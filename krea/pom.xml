@@ -31,7 +31,7 @@
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
         <version>2.3.232</version>
-        <scope>test</scope>
+        <!-- <scope>test</scope> --> <!-- si no lo comento, solo funciona en el modo test -->
     </dependency>
 
   </dependencies>
