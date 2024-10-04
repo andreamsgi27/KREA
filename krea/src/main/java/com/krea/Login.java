@@ -1,26 +1,26 @@
 package com.krea;
 
 public class Login {
-    private String contraseña;
+    private String password;
     private boolean autenticacion;
     private String usuario;
     
 
         // Constructor with parameters
-        public Login(String contraseña, boolean autenticacion, String usuario) {
-            this.contraseña = contraseña;
+        public Login(String password, boolean autenticacion, String usuario) {
+            this.password = password;
             this.autenticacion = autenticacion;
             this.usuario = usuario;
         }
     
 
         // Getters and Setters
-        public String getcontraseña() {
-            return contraseña;
+        public String getpassword() {
+            return password;
         }
     
-        public void setcontraseña(String contraseña) {
-            this.contraseña = contraseña;
+        public void setpassword(String password) {
+            this.password = password;
         }
     
         public boolean getautenticacion() {
@@ -44,7 +44,7 @@ public class Login {
         @Override
         public String toString() {
             return "Login{" +
-                    "contraseña=" + contraseña +
+                    "password=" + password +
                     ", autenticacion='" + autenticacion + '\'' +
                     ", usuario=" + usuario +
                     '}';
