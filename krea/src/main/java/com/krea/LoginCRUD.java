@@ -17,25 +17,25 @@ public class LoginCRUD {
     }
 
     
-        // // Obtener todas las personas de la base de datos
-        // public static List<Person> getAllPersons() {
-        //     List<Person> persons = new ArrayList<>();
-        //     String sql = "SELECT * FROM persons";
-        //     try (Connection connection = DatabaseConnection.getConnection();
-        //         PreparedStatement pstmt = connection.prepareStatement(sql);
-        //         ResultSet rs = pstmt.executeQuery()) {
+        // Obtener todas los nombres de usuario y su contraseña de la base de datos
+        public static List<Login> getAllusers() {
+            List<Login> users = new ArrayList<>();
+            String sql = "SELECT * FROM login";
+            try (Connection connection = DatabaseConnection.getConnection();
+                PreparedStatement pstmt = connection.prepareStatement(sql);
+                ResultSet rs = pstmt.executeQuery()) {
         //         while (rs.next()) {
         //             int id = rs.getInt("id");
-        //             String name = rs.getString("name");
+        //             String password = rs.getString("password");
         //             int age = rs.getInt("age");
         //             persons.add(new Person(id, name, age));
         //         }
         //         System.out.println("Todas las personas recuperadas: " + persons);
         //     } catch (SQLException e) {
         //         e.printStackTrace();
-        //     }
-        //     return persons;
-        // }
+            }
+        //     return users;
+        }
     
         
     
