@@ -2,23 +2,24 @@ package com.krea;
 
 import java.util.Scanner;
 
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
         Scanner scanner = new  Scanner(System.in);
         String rol;
         boolean check = true;
-        while (check = true){
-            System.out.println("¿Eres técnico o empleado? Escribe T o E (S para salir)" );
+        while (check){
+            try{
+                System.out.println("¿Eres técnico o empleado? Escribe T o E (S para salir)" );
             rol = scanner.nextLine();
             if  (rol.equalsIgnoreCase("T")) {
                 //Tecnico.main(args);
                 System.out.println("Bienvenido técnico");
                 //break;
             } else if (rol.equalsIgnoreCase("E")){
-                //Empleado.main(args);
                 System.out.println("Bienvenido empleado");
+                Empleado.main(args);
                 //break;
             } else if (rol.equalsIgnoreCase("S")){
                 break;
@@ -26,6 +27,11 @@ public class App
                 System.out.println("No has escrito T o E");
                 check = false;
             }
+            } catch  (Exception e) {
+                System.out.println("Error");
+            }
+
+            
             
         }
         
