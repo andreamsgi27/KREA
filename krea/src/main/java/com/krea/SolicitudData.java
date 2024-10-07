@@ -13,6 +13,9 @@ public class SolicitudData {
         "Revisión de Proyecto", "Revisión del proyecto de inteligencia artificial",
         "En curso"));
 
+        // Tienen que haber tres funciones dentro esta clase; cómo mostrar las solicitudes y seleccionar solicitud dentro del arraylist
+        // cómo marcar y/o sleccionar y/o modificar una solicitud
+        // Para imprimir los datos; ¿sería un read? 
         System.out.println("\nLista de Solicitudes:");
         for (Solicitud solicitud : solicitudes) {
         System.out.println(solicitud);
