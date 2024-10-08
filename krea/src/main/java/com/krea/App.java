@@ -1,13 +1,47 @@
 package com.krea;
 
-/**
- * Hello world!
- *
- */
-public class App 
+import java.util.Scanner;
+
+public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Scanner scanner = new  Scanner(System.in);
+        String rol;
+        boolean check = true;
+        while (check){
+            try{
+                System.out.println("¿Eres técnico o empleado? Escribe T o E (S para salir)" );
+            rol = scanner.nextLine();
+            if  (rol.equalsIgnoreCase("T")) {
+                //Tecnico.main(args);
+                System.out.println("Bienvenido técnico");
+                //break;
+            } else if (rol.equalsIgnoreCase("E")){
+                System.out.println("Bienvenido empleado");
+                Empleado.main(args);
+                //break;
+            } else if (rol.equalsIgnoreCase("S")){
+                break;
+            } else {
+                System.out.println("No has escrito T o E");
+                check = false;
+            }
+            } catch  (Exception e) {
+                System.out.println("Error");
+            }
+
+            
+            
+        }
+        
+
+
+
+
+        System.out.println("Gracias por usar nuestro programa");
+        scanner.close();
     }
+
+    
 }
