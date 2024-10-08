@@ -14,13 +14,11 @@ public class App
                 System.out.println("¿Eres técnico o empleado? Escribe T o E (S para salir)" );
             rol = scanner.nextLine();
             if  (rol.equalsIgnoreCase("T")) {
-                //Tecnico.main(args);
-                System.out.println("Bienvenido técnico");
-                //break;
+                Tecnico.main(args);
+                break;
             } else if (rol.equalsIgnoreCase("E")){
-                System.out.println("Bienvenido empleado");
                 Empleado.main(args);
-                //break;
+                break;
             } else if (rol.equalsIgnoreCase("S")){
                 break;
             } else {
