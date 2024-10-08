@@ -93,15 +93,6 @@ public class SolicitudCRUD {
         return null;
     }
 
-    public SolicitudDatabase obtenerSolicitud(int id) {
-        for (SolicitudDatabase solicitud : solicitudes) {
-            if (solicitud.getSolicitudId() == id) {
-                return solicitud;
-            }
-        }
-        return null;
-    }
-
     public boolean actualizarSolicitud(SolicitudDatabase solicitudActualizada) {
         for (int i = 0; i < solicitudes.size(); i++) {
             if (solicitudes.get(i).getSolicitudId() == solicitudActualizada.getSolicitudId()) {
