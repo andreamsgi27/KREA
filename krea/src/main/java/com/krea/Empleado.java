@@ -3,7 +3,7 @@ package com.krea;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class App {
+public class Empleado {
     public static void main(String[] args) {
         SolicitudCRUD solicitudCRUD = new SolicitudCRUD();
         
