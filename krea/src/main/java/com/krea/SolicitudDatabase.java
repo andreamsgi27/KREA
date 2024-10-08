@@ -1,6 +1,6 @@
 package com.krea;
 
-public class SolicitudBBDD {
+public class SolicitudDatabase {
     int id;
     String nombreSolicitante;
     String fechaSolicitud;
@@ -8,7 +8,7 @@ public class SolicitudBBDD {
     String descripcionSolicitud;
     String estadoSolicitud;
     
-    public SolicitudBBDD(int id, String nombreSolicitante, String fechaSolicitud, String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) {
+    public SolicitudDatabase(int id, String nombreSolicitante, String fechaSolicitud, String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) {
         this.id = id;
         this.nombreSolicitante = nombreSolicitante;
         this.fechaSolicitud = fechaSolicitud;
