@@ -1,14 +1,17 @@
 package com.krea;
+
+import java.time.LocalDate;
+
 public class Solicitud {
     private int solicitudId;
     private String nombreSolicitud;
-    private String fechaSolicitud;
+    private LocalDate fechaSolicitud;
     private String temaSolicitud;
     private String descripcionSolicitud;
     private String estadoSolicitud;
 
     // Constructor
-    public Solicitud(int solicitudId, String nombreSolicitud, String fechaSolicitud, String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) {
+    public Solicitud(int solicitudId, String nombreSolicitud, LocalDate fechaSolicitud, String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) {
         this.solicitudId = solicitudId;
         this.nombreSolicitud = nombreSolicitud;
         this.fechaSolicitud = fechaSolicitud;
@@ -34,11 +37,11 @@ public class Solicitud {
         this.nombreSolicitud = nombreSolicitud;
     }
 
-    public String getFechaSolicitud() {
+    public LocalDate getFechaSolicitud() {
         return fechaSolicitud;
     }
 
-    public void setFechaSolicitud(String fechaSolicitud) {
+    public void setFechaSolicitud(LocalDate fechaSolicitud) {
         this.fechaSolicitud = fechaSolicitud;
     }
 

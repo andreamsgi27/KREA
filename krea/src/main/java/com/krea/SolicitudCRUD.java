@@ -1,109 +1,87 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+package com.krea; // Declaración del paquete al que pertenece esta clase.
 
-public class SolicitudCRUD {
-    private Connection connection;
+import java.time.LocalDate; // Importa la clase LocalDate que permite manejar fechas.
+import java.util.ArrayList; // Importa la clase ArrayList que permite crear listas dinámicas.
+import java.util.Collections; // Importa la clase Collections que ofrece métodos para trabajar con colecciones.
+import java.util.Comparator; // Importa la clase Comparator que permite comparar objetos.
+import java.util.List; // Importa la interfaz List que define una colección ordenada.
 
-    public SolicitudCRUD(String jdbcUrl, String dbUser, String dbPassword) throws SQLException {
-        this.connection = DriverManager.getConnection(jdbcUrl, dbUser, dbPassword);
+public class SolicitudCRUD { // Declaración de la clase SolicitudCRUD.
+    private List<Solicitud> solicitudes; // Declara una variable privada de tipo List para almacenar las solicitudes.
+
+    public SolicitudCRUD(List<Solicitud> solicitudes) { // Constructor que recibe una lista de solicitudes.
+        this.solicitudes = solicitudes; // Asigna la lista recibida a la variable de instancia.
     }
 
     // Crear una nueva solicitud (Create)
-    public void crearSolicitud(Solicitud solicitud) throws SQLException {
-        String query = "INSERT INTO solicitudes (nombre_solicitud, fecha_solicitud, tema_solicitud, descripcion_solicitud, estado_solicitud) VALUES (?, ?, ?, ?, ?)";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, solicitud.getNombreSolicitud());
-        statement.setString(2, solicitud.getFechaSolicitud());
-        statement.setString(3, solicitud.getTemaSolicitud());
-        statement.setString(4, solicitud.getDescripcionSolicitud());
-        statement.setString(5, solicitud.getEstadoSolicitud());
-        statement.executeUpdate();
-        statement.close();
+    public void crearSolicitud(int solicitudId, String nombreSolicitud, LocalDate fechaSolicitud, String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) { // Método para crear una nueva solicitud.
+        Solicitud solicitud = new Solicitud(solicitudId, nombreSolicitud, fechaSolicitud, temaSolicitud, descripcionSolicitud, estadoSolicitud);
+        solicitudes.add(solicitud); // Agrega la nueva solicitud a la lista de solicitudes.
     }
 
     // Leer una solicitud por su ID (Read)
-    public Solicitud obtenerSolicitud(int id) throws SQLException {
-        String query = "SELECT * FROM solicitudes WHERE solicitud_id = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, id);
-        ResultSet resultSet = statement.executeQuery();
-
-        if (resultSet.next()) {
-            Solicitud solicitud = new Solicitud(
-                resultSet.getInt("solicitud_id"),
-                resultSet.getString("nombre_solicitud"),
-                resultSet.getString("fecha_solicitud"),
-                resultSet.getString("tema_solicitud"),
-                resultSet.getString("descripcion_solicitud"),
-                resultSet.getString("estado_solicitud")
-            );
-            resultSet.close();
-            statement.close();
-            return solicitud;
-        } else {
-            resultSet.close();
-            statement.close();
-            return null; // No se encontró la solicitud
+    public Solicitud obtenerSolicitud(int id) { // Método para obtener una solicitud usando su ID.
+        for (Solicitud solicitud : solicitudes) { // Recorre cada solicitud en la lista.
+            if (solicitud.getSolicitudId() == id) { // Verifica si el ID de la solicitud coincide con el ID buscado.
+                return solicitud; // Retorna la solicitud si el ID coincide.
+            }
         }
+        return null; // Si no se encuentra la solicitud, retorna null.
     }
 
     // Actualizar una solicitud (Update)
-    public void actualizarSolicitud(Solicitud solicitud) throws SQLException {
-        String query = "UPDATE solicitudes SET nombre_solicitud = ?, fecha_solicitud = ?, tema_solicitud = ?, descripcion_solicitud = ?, estado_solicitud = ? WHERE solicitud_id = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, solicitud.getNombreSolicitud());
-        statement.setString(2, solicitud.getFechaSolicitud());
-        statement.setString(3, solicitud.getTemaSolicitud());
-        statement.setString(4, solicitud.getDescripcionSolicitud());
-        statement.setString(5, solicitud.getEstadoSolicitud());
-        statement.setInt(6, solicitud.getSolicitudId());
-        statement.executeUpdate();
-        statement.close();
-    }
-
-    // Eliminar una solicitud (Delete)
-    public void eliminarSolicitud(int id) throws SQLException {
-        String query = "DELETE FROM solicitudes WHERE solicitud_id = ?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, id);
-        statement.executeUpdate();
-        statement.close();
-    }
-
-    // Listar todas las solicitudes (Read all)
-    public List<Solicitud> listarSolicitudes() throws SQLException {
-        List<Solicitud> solicitudes = new ArrayList<>();
-        String query = "SELECT * FROM solicitudes";
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(query);
-
-        while (resultSet.next()) {
-            Solicitud solicitud = new Solicitud(
-                resultSet.getInt("solicitud_id"),
-                resultSet.getString("nombre_solicitud"),
-                resultSet.getString("fecha_solicitud"),
-                resultSet.getString("tema_solicitud"),
-                resultSet.getString("descripcion_solicitud"),
-                resultSet.getString("estado_solicitud")
-            );
-            solicitudes.add(solicitud);
+    public boolean actualizarSolicitud(Solicitud solicitudActualizada) { // Método para actualizar una solicitud existente.
+        for (int i = 0; i < solicitudes.size(); i++) { // Itera sobre la lista de solicitudes usando un índice.
+            Solicitud solicitud = solicitudes.get(i); // Obtiene la solicitud en la posición actual.
+            if (solicitud.getSolicitudId() == solicitudActualizada.getSolicitudId()) { // Verifica si los IDs coinciden.
+                solicitudes.set(i, solicitudActualizada); // Reemplaza la solicitud existente con la actualizada.
+                return true; // Retorna true si la actualización fue exitosa.
+            }
         }
-
-        resultSet.close();
-        statement.close();
-        return solicitudes;
+        return false; // Retorna false si no se encontró la solicitud para actualizar.
     }
 
-    // Cerrar la conexión a la base de datos
-    public void cerrarConexion() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
+    // Eliminar una solicitud solo si está finalizada (Delete)
+    public boolean eliminarSolicitud(int id) { // Método para eliminar una solicitud por su ID.
+        for (int i = 0; i < solicitudes.size(); i++) { // Itera sobre la lista de solicitudes.
+            Solicitud solicitud = solicitudes.get(i); // Obtiene la solicitud en la posición actual.
+            // Verifica si el ID coincide y si el estado es "Finalizada".
+            if (solicitud.getSolicitudId() == id && "Finalizada".equals(solicitud.getEstadoSolicitud())) {
+                solicitudes.remove(i); // Elimina la solicitud de la lista.
+                return true; // Retorna true si la eliminación fue exitosa.
+            }
         }
+        return false; // Retorna false si no se encontró la solicitud o no estaba finalizada.
+    }
+
+    // Listar todas las solicitudes en orden de creación (Read all)
+    public List<Solicitud> listarSolicitudesEnOrdenAsc() { // Método para listar todas las solicitudes en orden ascendente.
+        Collections.sort(solicitudes, Comparator.comparing(Solicitud::getFechaSolicitud)); // Ordena la lista por fecha de solicitud.
+        return new ArrayList<>(solicitudes); // Devuelve una copia de la lista de solicitudes.
+    }
+
+    // Cambiar el estado de una solicitud
+    public boolean cambiarEstadoSolicitud(int id, String nuevoEstado) { // Método para cambiar el estado de una solicitud.
+        for (Solicitud solicitud : solicitudes) { // Recorre cada solicitud en la lista.
+            if (solicitud.getSolicitudId() == id) { // Verifica si el ID coincide.
+                solicitud.setEstadoSolicitud(nuevoEstado); // Cambia el estado de la solicitud.
+                // Si el nuevo estado es "Atendida", establece la fecha de atención.
+                if ("Atendida".equals(nuevoEstado)) {
+                    solicitud.setFechaSolicitud(LocalDate.now()); // Establece la fecha de atención como la fecha actual.
+                }
+                return true; // Retorna true si el cambio de estado fue exitoso.
+            }
+        }
+        return false; // Retorna false si no se encontró la solicitud.
     }
 }
+
+//Requisitos:
+//La solicitud contendrá los siguientes datos: nombre del solicitante, fecha de la solicitud, tema de la consulta, descripción
+//Los empleados podrán crear nuevas solicitudes de soporte técnico, visualizarlas, y actualizarlas.
+//El departamento técnico debe poder solicitar todas la solicitudes en orden de creación (ASC)
+//El departamento técnico debe saber si una solicitud está en curso
+//El departamento técnico debe poder marcar una solicitud como atendida, en curso o finalizada
+//El departamento técnico debe poder saber cuando de efectuó la asistencia
+//El departamento técnico debe poder editar una solicitud ya registrada
+//El departamento técnico debe poder eliminar una solicitud siempre y cuando está haya sido marcada previamente como finalizada
