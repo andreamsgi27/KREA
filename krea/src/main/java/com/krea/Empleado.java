@@ -15,7 +15,7 @@ public class Empleado {
                 opciones = scanner.nextInt();
                 if (opciones == 1) {
                     System.out.println("el 1");
-                    //Solicitud.nuevaSolicitud();
+                    SolicitudCRUD.crearSolicitud();
 
                 } else if (opciones == 2){
                     System.out.println("el 2");
