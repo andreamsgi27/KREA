@@ -1,14 +1,11 @@
 package com.krea;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        List<SolicitudDatabase> solicitudes = new ArrayList<>();
-        SolicitudCRUD solicitudCRUD = new SolicitudCRUD(solicitudes);
+        SolicitudCRUD solicitudCRUD = new SolicitudCRUD();
         
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
@@ -20,8 +17,7 @@ public class App {
             System.out.println("3. Actualizar solicitud");
             System.out.println("4. Eliminar solicitud");
             System.out.println("5. Listar solicitudes");
-            System.out.println("6. Cambiar estado de solicitud");
-            System.out.println("7. Salir");
+            System.out.println("6. Salir");
             System.out.print("Seleccione una opción: ");
 
             int opcion = scanner.nextInt();
@@ -29,25 +25,24 @@ public class App {
 
             switch (opcion) {
                 case 1:
-                    System.out.print("Ingrese ID de la solicitud: ");
-                    int idCrear = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Ingrese nombre del solicitante: ");
-                    String nombreCrear = scanner.nextLine();
-                    System.out.print("Ingrese fecha de la solicitud (YYYY-MM-DD): ");
-                    LocalDate fechaCrear = LocalDate.parse(scanner.nextLine());
-                    System.out.print("Ingrese tema de la solicitud: ");
-                    String temaCrear = scanner.nextLine();
-                    System.out.print("Ingrese descripción de la solicitud: ");
-                    String descripcionCrear = scanner.nextLine();
-                    System.out.print("Ingrese estado de la solicitud: ");
-                    String estadoCrear = scanner.nextLine();
-
-                    solicitudCRUD.crearSolicitud(idCrear, nombreCrear, fechaCrear, temaCrear, descripcionCrear, estadoCrear);
+                    System.out.print("Ingrese nombre: ");
+                    String nombre = scanner.nextLine();
+                    System.out.print("Ingrese fecha (YYYY-MM-DD): ");
+                    LocalDate fecha = LocalDate.parse(scanner.nextLine());
+                    System.out.print("Ingrese tema: ");
+                    String tema = scanner.nextLine();
+                    System.out.print("Ingrese descripción: ");
+                    String descripcion = scanner.nextLine();
+                    System.out.print("Ingrese estado: ");
+                    String estado = scanner.nextLine();
+                    
+                    solicitudCRUD.crearSolicitud(nombre, fecha, tema, descripcion, estado);
                     System.out.println("Solicitud creada exitosamente.");
                     break;
+            
 
                 case 2:
+                    // Obtener solicitud
                     System.out.print("Ingrese ID de la solicitud a obtener: ");
                     int idObtener = scanner.nextInt();
                     SolicitudDatabase solicitudObtenida = solicitudCRUD.obtenerSolicitud(idObtener);
@@ -59,6 +54,7 @@ public class App {
                     break;
 
                 case 3:
+                    // Actualizar solicitud
                     System.out.print("Ingrese ID de la solicitud a actualizar: ");
                     int idActualizar = scanner.nextInt();
                     scanner.nextLine();
@@ -83,39 +79,24 @@ public class App {
                     break;
 
                 case 4:
+                    // Eliminar solicitud
                     System.out.print("Ingrese ID de la solicitud a eliminar: ");
                     int idEliminar = scanner.nextInt();
                     boolean eliminado = solicitudCRUD.eliminarSolicitud(idEliminar);
                     if (eliminado) {
                         System.out.println("Solicitud eliminada exitosamente.");
                     } else {
-                        System.out.println("No se encontró la solicitud o no estaba finalizada.");
+                        System.out.println("No se encontró la solicitud con ID: " + idEliminar);
                     }
                     break;
 
                 case 5:
-                    List<SolicitudDatabase> listaSolicitudes = solicitudCRUD.listarSolicitudesEnOrdenAsc();
-                    System.out.println("---- Lista de Solicitudes ----");
-                    for (SolicitudDatabase sol : listaSolicitudes) {
-                        System.out.println(sol);
-                    }
+                    // Listar solicitudes
+                    solicitudCRUD.mostrarSolicitudes();
                     break;
 
                 case 6:
-                    System.out.print("Ingrese ID de la solicitud a cambiar estado: ");
-                    int idCambiarEstado = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.print("Ingrese nuevo estado: ");
-                    String nuevoEstado = scanner.nextLine();
-                    boolean estadoCambiado = solicitudCRUD.cambiarEstadoSolicitud(idCambiarEstado, nuevoEstado);
-                    if (estadoCambiado) {
-                        System.out.println("Estado de la solicitud cambiado exitosamente.");
-                    } else {
-                        System.out.println("No se encontró la solicitud con ID: " + idCambiarEstado);
-                    }
-                    break;
-
-                case 7:
+                    solicitudCRUD.guardarSolicitudes(); // Guardar antes de salir
                     running = false;
                     System.out.println("Saliendo de la aplicación...");
                     break;

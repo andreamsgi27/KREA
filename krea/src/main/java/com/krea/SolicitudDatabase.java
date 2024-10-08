@@ -1,8 +1,11 @@
 package com.krea;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class SolicitudDatabase {
+public class SolicitudDatabase implements Serializable {
+    private static final long serialVersionUID = 1L; // Para control de versión
+
     private int solicitudId;
     private String nombreSolicitud;
     private LocalDate fechaSolicitud;
@@ -10,8 +13,8 @@ public class SolicitudDatabase {
     private String descripcionSolicitud;
     private String estadoSolicitud;
 
-    // Constructor
-    public SolicitudDatabase(int solicitudId, String nombreSolicitud, LocalDate fechaSolicitud, String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) {
+    public SolicitudDatabase(int solicitudId, String nombreSolicitud, LocalDate fechaSolicitud, 
+                            String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) {
         this.solicitudId = solicitudId;
         this.nombreSolicitud = nombreSolicitud;
         this.fechaSolicitud = fechaSolicitud;
@@ -20,7 +23,7 @@ public class SolicitudDatabase {
         this.estadoSolicitud = estadoSolicitud;
     }
 
-    // Getters y Setters
+    // Getters and Setters
     public int getSolicitudId() {
         return solicitudId;
     }
@@ -71,13 +74,11 @@ public class SolicitudDatabase {
 
     @Override
     public String toString() {
-        return "Solicitud{" +
-                "solicitudId=" + solicitudId +
-                ", nombreSolicitud='" + nombreSolicitud + '\'' +
-                ", fechaSolicitud=" + fechaSolicitud +  // Cambiado a LocalDate
-                ", temaSolicitud='" + temaSolicitud + '\'' +
-                ", descripcionSolicitud='" + descripcionSolicitud + '\'' +
-                ", estadoSolicitud='" + estadoSolicitud + '\'' +
-                '}';
+        return "Solicitud ID: " + solicitudId +
+        ", Nombre: " + nombreSolicitud +
+        ", Fecha: " + fechaSolicitud +
+        ", Tema: " + temaSolicitud +
+        ", Descripción: " + descripcionSolicitud +
+"       , Estado: " + estadoSolicitud;
     }
 }
