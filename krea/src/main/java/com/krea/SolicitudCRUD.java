@@ -8,7 +8,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Scanner;
 
 public class SolicitudCRUD {
     private List<SolicitudDatabase> solicitudes;
@@ -137,11 +140,36 @@ public class SolicitudCRUD {
         }
         return false;
     }
-
+    
     public void mostrarSolicitudes() {
         System.out.println("---- Lista de Solicitudes ----");
+    
+        // Ordenar las solicitudes por fecha en orden ascendente
+        Collections.sort(solicitudes, new Comparator<SolicitudDatabase>() {
+            @Override
+            public int compare(SolicitudDatabase s1, SolicitudDatabase s2) {
+                return s1.getFechaSolicitud().compareTo(s2.getFechaSolicitud()); // Asumiendo que getFecha() retorna un LocalDate
+            }
+        });
+    
         for (SolicitudDatabase solicitud : solicitudes) {
             System.out.println(solicitud);
         }
     }
+    
+    // continuar
+    SolicitudDatabase(estadoSolicitud);
+    public void cambiarestadoSolicitud(String estadoSolicitud){
+        System.out.println("Inserte nuevo estado: \n 1 - Atendida \n 2 - En Curso \n 3 - Finalizada");
+        estadoSolicitud = Scanner.nextLine();
+        return estadoSolicitud;
+    }
+
+
+    /* public void mostrarSolicitudes() {
+        System.out.println("---- Lista de Solicitudes ----");
+        for (SolicitudDatabase solicitud : solicitudes) {
+            System.out.println(solicitud);
+        }
+    } */
 }

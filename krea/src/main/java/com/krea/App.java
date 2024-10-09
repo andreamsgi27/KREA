@@ -23,7 +23,6 @@ public class App
                 break;
             } else {
                 System.out.println("No has escrito T o E");
-                check = false;
             }
             } catch  (Exception e) {
                 System.out.println("Error");

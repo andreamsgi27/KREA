@@ -9,6 +9,11 @@ public class Empleado {
         
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
+        LocalDate fecha = null;
+        //boolean fechaValida = false;
+        LocalDate  fechaActual = LocalDate.now();
+
+
 
         while (running) {
             System.out.println("---- Menú ----");
@@ -25,10 +30,9 @@ public class Empleado {
 
             switch (opcion) {
                 case 1:
+                    fecha = fechaActual;
                     System.out.print("Ingrese nombre: ");
                     String nombre = scanner.nextLine();
-                    System.out.print("Ingrese fecha (YYYY-MM-DD): ");
-                    LocalDate fecha = LocalDate.parse(scanner.nextLine());
                     System.out.print("Ingrese tema: ");
                     String tema = scanner.nextLine();
                     System.out.print("Ingrese descripción: ");

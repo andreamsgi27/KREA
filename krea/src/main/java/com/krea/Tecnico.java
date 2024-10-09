@@ -21,8 +21,7 @@ public class Tecnico {
                 }
 
                 else if (opciones == 2){
-                    System.out.println("el 2");
-                    //SolicitudCRUD.cambiarestadoSolicitud();
+                    SolicitudCRUD.cambiarestadoSolicitud();
 
                 }
 
