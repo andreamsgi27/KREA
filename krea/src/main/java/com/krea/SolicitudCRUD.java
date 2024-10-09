@@ -157,14 +157,47 @@ public class SolicitudCRUD {
         }
     }
     
-    // continuar
-    SolicitudDatabase(estadoSolicitud);
-    public void cambiarestadoSolicitud(String estadoSolicitud){
-        System.out.println("Inserte nuevo estado: \n 1 - Atendida \n 2 - En Curso \n 3 - Finalizada");
-        estadoSolicitud = Scanner.nextLine();
-        return estadoSolicitud;
-    }
 
+    public void cambiarestadoSolicitud(int solicitudId) {
+        SolicitudCRUD solicitudCRUD = new SolicitudCRUD();
+        Scanner scanner = new Scanner(System.in);
+        SolicitudDatabase solicitud = solicitudCRUD.obtenerSolicitud(solicitudId);
+        
+        if (solicitud != null) {
+            System.out.println("Estado actual de la solicitud: " + solicitud.getEstadoSolicitud());
+            System.out.println("Seleccione el nuevo estado:");
+            System.out.println("1 - Atendida");
+            System.out.println("2 - En Curso");
+            System.out.println("3 - Finalizada");
+            
+            int opcion = scanner.nextInt();
+            scanner.nextLine();  // Consumir el salto de línea después del número
+            
+            String nuevoEstado = null;
+            switch (opcion) {
+                case 1:
+                    nuevoEstado = "Atendida";
+                    break;
+                case 2:
+                    nuevoEstado = "En Curso";
+                    break;
+                case 3:
+                    nuevoEstado = "Finalizada";
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intente de nuevo.");
+                    return;  // Salir del método si la opción no es válida
+            }
+            
+            // Actualizar el estado de la solicitud
+            solicitud.setEstadoSolicitud(nuevoEstado);
+            solicitudCRUD.actualizarSolicitud(solicitud);
+            System.out.println("El estado de la solicitud ha sido actualizado a: " + nuevoEstado);
+        } else {
+            System.out.println("No se encontró la solicitud con ID: " + solicitudId);
+        }
+    }
+}
 
     /* public void mostrarSolicitudes() {
         System.out.println("---- Lista de Solicitudes ----");
@@ -172,4 +205,4 @@ public class SolicitudCRUD {
             System.out.println(solicitud);
         }
     } */
-}
+
