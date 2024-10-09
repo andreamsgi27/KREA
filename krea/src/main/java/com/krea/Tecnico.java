@@ -1,5 +1,5 @@
 package com.krea;
-
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Tecnico {
@@ -8,27 +8,66 @@ public class Tecnico {
         SolicitudCRUD solicitudCRUD = new SolicitudCRUD();
         int opciones;
         boolean check = true;
+        LocalDate fechaActual = LocalDate.now();
 
         while (check) {
             try {
                 System.err.println("");
-                System.out.println("[1 - Ver solicitudes] [2 - Cambiar estado de Solicitud] [3 - Editar Solicitud] [4 - Eliminar Solicitud] [5 - Salir]");
+                System.out.println("1 - [Ver solicitudes] \n2 - [Cambiar estado de Solicitud] \n3 - [Editar Solicitud] \n4 - [Eliminar Solicitud] \n5 - [Salir]");
                 opciones = scanner.nextInt();
 
                 if (opciones == 1) {
                     solicitudCRUD.mostrarSolicitudes();
+
+
                 } else if (opciones == 2) {
                     System.out.println("Ingrese el ID de la solicitud que desea modificar: ");
                     int solicitudId = scanner.nextInt();
                     solicitudCRUD.cambiarestadoSolicitud(solicitudId); // Call the method with the solicitudId
+
+
                 } else if (opciones == 3) {
-                    System.out.println("Opción 3 seleccionada: Editar Solicitud");
-                    // Call actualizarSolicitud method if needed
+                    // Actualizar solicitud
+                    LocalDate fechaActualizar = LocalDate.now();
+                    System.out.print("Ingrese ID de la solicitud a actualizar: ");
+                    int idActualizar = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Ingrese nuevo nombre del solicitante: ");
+                    String nombreActualizar = scanner.nextLine();
+                    System.out.print("Ingrese nuevo tema de la solicitud: ");
+                    String temaActualizar = scanner.nextLine();
+                    System.out.print("Ingrese nueva descripción de la solicitud: ");
+                    String descripcionActualizar = scanner.nextLine();
+                    String estadoActualizar = "Modificado por Tecnico";
+
+                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar, fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
+                    boolean actualizado = solicitudCRUD.actualizarSolicitudTecnico(solicitudActualizar);
+                    if (actualizado) {
+                        System.out.println("Solicitud actualizada exitosamente.");
+                    } else {
+                        System.out.println("No se encontró la solicitud con ID: " + idActualizar);
+                    }
+
+
                 } else if (opciones == 4) {
-                    System.out.println("Opción 4 seleccionada: Eliminar Solicitud");
-                    // Call eliminarSolicitud method if needed
+                    // Eliminar solicitud
+                    /* System.out.print("Ingrese ID de la solicitud a eliminar: ");
+                    int idEliminar = scanner.nextInt();
+                    if (SolicitudDatabase.estadoSolicitud = "Finalizada"){
+                            boolean eliminado = solicitudCRUD.eliminarSolicitud(idEliminar);
+                        if (eliminado) {
+                            System.out.println("Solicitud eliminada exitosamente.");
+                        } else {
+                            System.out.println("No se encontró la solicitud con ID: " + idEliminar);
+                        }
+                    } */
+                    
+
+
                 } else if (opciones == 5) {
                     check = false; // Exit the loop
+
+
                 } else {
                     System.out.println("No has escrito bien el número");
                 }

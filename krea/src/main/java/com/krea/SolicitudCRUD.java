@@ -119,6 +119,17 @@ public class SolicitudCRUD {
         return null;
     }
 
+    public boolean actualizarSolicitudTecnico(SolicitudDatabase solicitudActualizada) {
+        for (int i = 0; i < solicitudes.size(); i++) {
+            if (solicitudes.get(i).getSolicitudId() == solicitudActualizada.getSolicitudId()) {
+                solicitudes.set(i, solicitudActualizada);
+                guardarSolicitudes(); // Save after updating
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean actualizarSolicitud(SolicitudDatabase solicitudActualizada) {
         for (int i = 0; i < solicitudes.size(); i++) {
             if (solicitudes.get(i).getSolicitudId() == solicitudActualizada.getSolicitudId()) {
@@ -192,17 +203,10 @@ public class SolicitudCRUD {
             // Actualizar el estado de la solicitud
             solicitud.setEstadoSolicitud(nuevoEstado);
             solicitudCRUD.actualizarSolicitud(solicitud);
-            System.out.println("El estado de la solicitud ha sido actualizado a: " + nuevoEstado);
+            System.out.println("\nEl estado de la solicitud ha sido actualizado a: " + nuevoEstado);
         } else {
             System.out.println("No se encontró la solicitud con ID: " + solicitudId);
         }
     }
 }
-
-    /* public void mostrarSolicitudes() {
-        System.out.println("---- Lista de Solicitudes ----");
-        for (SolicitudDatabase solicitud : solicitudes) {
-            System.out.println(solicitud);
-        }
-    } */
 

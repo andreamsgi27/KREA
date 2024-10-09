@@ -10,30 +10,26 @@ public class App
         String rol;
         boolean check = true;
         while (check){
-            try {
-                // Imprimir un título destacado
-                System.out.println("                                           ");
-                System.out.println("===========================================");
-                System.out.println("        ¿Eres técnico o empleado?         ");
-                System.out.println("             Escribe T o E               ");
-                System.out.println("             (S para salir)              ");
-                System.out.println("===========================================");
-                
-                rol = scanner.nextLine();
-                if (rol.equalsIgnoreCase("T")) {
-                    Tecnico.main(args);
-                    break;
-                } else if (rol.equalsIgnoreCase("E")) {
-                    Empleado.main(args);
-                    break;
-                } else if (rol.equalsIgnoreCase("S")) {
-                    break;
-                } else {
-                    System.out.println("No has escrito T o E");
-                }
-            } catch (Exception e) {
+            try{
+                System.out.println("¿Eres técnico o empleado? Escribe T o E (S para salir)" );
+            rol = scanner.nextLine();
+            if  (rol.equalsIgnoreCase("T")) {
+                Tecnico.main(args);
+                break;
+            } else if (rol.equalsIgnoreCase("E")){
+                Empleado.main(args);
+                break;
+            } else if (rol.equalsIgnoreCase("S")){
+                break;
+            } else {
+                System.out.println("No has escrito T o E");
+                //check = false;
+            }
+            } catch  (Exception e) {
                 System.out.println("Error");
             }
+
+            
             
         }
         

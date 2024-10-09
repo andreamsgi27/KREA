@@ -37,8 +37,7 @@ public class Empleado {
                     String tema = scanner.nextLine();
                     System.out.print("Ingrese descripción: ");
                     String descripcion = scanner.nextLine();
-                    System.out.print("Ingrese estado: ");
-                    String estado = scanner.nextLine();
+                    String estado = ("Pendiente");
                     
                     solicitudCRUD.crearSolicitud(nombre, fecha, tema, descripcion, estado);
                     System.out.println("Solicitud creada exitosamente.");
@@ -64,16 +63,16 @@ public class Empleado {
                     scanner.nextLine();
                     System.out.print("Ingrese nuevo nombre del solicitante: ");
                     String nombreActualizar = scanner.nextLine();
-                    System.out.print("Ingrese nueva fecha de la solicitud (YYYY-MM-DD): ");
-                    LocalDate fechaActualizar = LocalDate.parse(scanner.nextLine());
+                    LocalDate fechaActualizar = LocalDate.now();
                     System.out.print("Ingrese nuevo tema de la solicitud: ");
                     String temaActualizar = scanner.nextLine();
                     System.out.print("Ingrese nueva descripción de la solicitud: ");
                     String descripcionActualizar = scanner.nextLine();
-                    System.out.print("Ingrese nuevo estado de la solicitud: ");
-                    String estadoActualizar = scanner.nextLine();
 
-                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar, fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
+                    String estadoActualizar = "Cambio en Solicitud";
+
+                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar, fechaActualizar, temaActualizar, descripcionActualizar,  estadoActualizar);
+
                     boolean actualizado = solicitudCRUD.actualizarSolicitud(solicitudActualizar);
                     if (actualizado) {
                         System.out.println("Solicitud actualizada exitosamente.");
