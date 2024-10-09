@@ -74,11 +74,11 @@ public class SolicitudDatabase implements Serializable {
 
     @Override
     public String toString() {
-        return "Solicitud ID: " + solicitudId +
-        ", Nombre: " + nombreSolicitud +
-        ", Fecha: " + fechaSolicitud +
-        ", Tema: " + temaSolicitud +
-        ", Descripción: " + descripcionSolicitud +
-"       , Estado: " + estadoSolicitud;
+        return "[Solicitud ID]: " + solicitudId +
+        "   [Estado]: " + estadoSolicitud +
+        "   [Fecha]: " + fechaSolicitud +
+        "   [Nombre]: " + nombreSolicitud +
+        "   [Tema]: " + temaSolicitud +
+        "   [Descripción]: " + descripcionSolicitud;
     }
 }
