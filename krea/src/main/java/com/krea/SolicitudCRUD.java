@@ -33,7 +33,7 @@ public class SolicitudCRUD {
         } catch (IOException | ClassNotFoundException e) {
             String rojo = "\033[0;31m";
             String reset = "\033[0m";
-            System.out.println(rojo + "ERROR: no se pueden cargar las solicitudes: " + e.getMessage() + reset);
+            System.out.println(rojo + "\n ERROR: no se pueden cargar las solicitudes: " + e.getMessage() + reset);
         }
     }
 
@@ -93,7 +93,7 @@ public class SolicitudCRUD {
         } catch (IOException e) {
             String rojo = "\033[0;31m";
             String reset = "\033[0m";
-            System.out.println(rojo + "ERROR: no se pudieron guardar las solicitudes: " + e.getMessage() + reset);
+            System.out.println(rojo + "\n ERROR: no se pudieron guardar las solicitudes: " + e.getMessage() + reset);
         }
     }
 
@@ -203,7 +203,7 @@ public class SolicitudCRUD {
                 default:
                     String rojo = "\033[0;31m";
                     String reset = "\033[0m";    
-                    System.out.println(rojo + "ERROR: Opción no válida. Intente de nuevo." + reset);
+                    System.out.println(rojo + "\n ERROR: Opción no válida. Intente de nuevo." + reset);
                     return; // Salir del método si la opción no es válida
             }
     
@@ -215,7 +215,7 @@ public class SolicitudCRUD {
         } else {
             String rojo = "\033[0;31m";
             String reset = "\033[0m";    
-            System.out.println(rojo + "ERROR: No se encontró la solicitud con ID: " + solicitudId);
+            System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID: " + solicitudId);
         }
     }
     

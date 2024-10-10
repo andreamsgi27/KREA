@@ -66,7 +66,7 @@ public class Empleado {
                     } else {
                         String rojo = "\033[0;31m";
                         String reset = "\033[0m";    
-                        System.out.println(rojo + "ERROR: No se encontró la solicitud con ID: " + idObtener + reset);
+                        System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID: " + idObtener + reset);
                     }
                     break;
 
@@ -100,7 +100,7 @@ public class Empleado {
                     } else {
                         String rojo = "\033[0;31m";
                         String reset = "\033[0m";    
-                        System.out.println(rojo + "ERROR: No se encontró la solicitud con ID: " + idActualizar + reset);
+                        System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID: " + idActualizar + reset);
                     }
                     break;
 
@@ -116,11 +116,11 @@ public class Empleado {
                     if (eliminado) {   
                         String verde = "\033[0;32m";
                         String reset = "\033[0m";
-                        System.out.println(verde + "Solicitud eliminada exitosamente." + reset);
+                        System.out.println(verde + "\n Solicitud eliminada exitosamente." + reset);
                     } else {
                         String rojo = "\033[0;31m";
                         String reset = "\033[0m";    
-                        System.out.println(rojo + "ERROR: No se encontró la solicitud con ID " + idEliminar + reset);
+                        System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID " + idEliminar + reset);
                     }
                     break;
 
@@ -144,7 +144,7 @@ public class Empleado {
                 default:
                 String rojo = "\033[0;31m";
                 String reset1 = "\033[0m";    
-                    System.out.println(rojo + "ERROR: Opción no válida. Intente de nuevo." + reset1);
+                    System.out.println(rojo + "\n ERROR: Opción no válida. Intente de nuevo." + reset1);
             }
         }
         scanner.close();
