@@ -215,7 +215,7 @@ public class SolicitudCRUD {
         } else {
             String rojo = "\033[0;31m";
             String reset = "\033[0m";    
-            System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID: " + solicitudId);
+            System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID " + solicitudId + reset);
         }
     }
     
@@ -231,7 +231,14 @@ public class SolicitudCRUD {
                 System.out.println(verde + "La solicitud " + id + " ha sido eliminada." + reset);
                 return true;
             }
+            if (solicitudes.get(i).getSolicitudId() == id
+            && !solicitudes.get(i).getEstadoSolicitud().equals("Finalizada")) {
+                System.out.println();
+                String rojo = "\033[0;31m";
+                String reset = "\033[0m";
+                System.out.println(rojo + "ERROR: La solicitud no puede ser eliminada porque no está finalizada o no existe." + reset);
         }
+    }
         return false;
     }
 

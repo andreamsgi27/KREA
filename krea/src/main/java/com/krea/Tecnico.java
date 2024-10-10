@@ -50,25 +50,24 @@ public class Tecnico {
                     System.out.print("> Ingrese ID de la solicitud a actualizar: ");
                     int idActualizar = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("> Ingrese nuevo nombre del solicitante: ");
-                    String nombreActualizar = scanner.nextLine();
-                    System.out.print("> Ingrese nuevo tema de la solicitud: ");
-                    String temaActualizar = scanner.nextLine();
-                    System.out.print("> Ingrese nueva descripción de la solicitud: ");
-                    String descripcionActualizar = scanner.nextLine();
-                    String estadoActualizar = "Modificado por Técnico";
-
-                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar,
-                            fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
-                    boolean actualizado = solicitudCRUD.actualizarSolicitudTecnico(solicitudActualizar);
-                    if (actualizado) {
+                    if (solicitudCRUD.obtenerSolicitud(idActualizar) != null) {
+                        System.out.print("> Ingrese nuevo nombre del solicitante: ");
+                        String nombreActualizar = scanner.nextLine();
+                        System.out.print("> Ingrese nuevo tema de la solicitud: ");
+                        String temaActualizar = scanner.nextLine();
+                        System.out.print("> Ingrese nueva descripción de la solicitud: ");
+                        String descripcionActualizar = scanner.nextLine();
+                        String estadoActualizar = "Modificado por Técnico";
+                        SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar,
+                                fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
+                        boolean actualizado = solicitudCRUD.actualizarSolicitudTecnico(solicitudActualizar);
                         String verde = "\033[0;32m";
                         String reset = "\033[0m";
                         System.out.println(verde + "\n Solicitud actualizada exitosamente." + reset);
                     } else {
                         String rojo = "\033[0;31m";
                         String reset = "\033[0m";
-                        System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID: " + idActualizar + reset);
+                        System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + idActualizar + reset);
                     }
 
                 } else if (opciones == 4) {
@@ -78,14 +77,14 @@ public class Tecnico {
                     System.out.println("------------------");
                     System.out.println("Por favor introduce el ID de la solicitud a eliminar:");
                     int solicitudId = scanner.nextInt();
-                    solicitudCRUD.eliminarSolicitudTecnico(solicitudId);
-
-                    if (solicitudCRUD.eliminarSolicitudTecnico(solicitudId) == false) {
-                        System.out.println();
+                    if (solicitudCRUD.obtenerSolicitud(solicitudId) != null) {
+                        solicitudCRUD.eliminarSolicitudTecnico(solicitudId);
+                    }else{
                         String rojo = "\033[0;31m";
                         String reset = "\033[0m";
-                        System.out.println(rojo + "ERROR: La solicitud no puede ser eliminada porque no está finalizada o no existe." + reset);
+                        System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + solicitudId + reset);
                     }
+
 
                 } else if (opciones == 5) {
                     String amarillo = "\033[0;33m";  

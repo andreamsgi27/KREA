@@ -79,28 +79,25 @@ public class Empleado {
                     System.out.print("> Ingrese ID de la solicitud a actualizar: ");
                     int idActualizar = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("> Ingrese nuevo nombre del solicitante: ");
-                    String nombreActualizar = scanner.nextLine();
-                    LocalDate fechaActualizar = LocalDate.now();
-                    System.out.print("> Ingrese nuevo tema de la solicitud: ");
-                    String temaActualizar = scanner.nextLine();
-                    System.out.print("> Ingrese nueva descripción de la solicitud: ");
-                    String descripcionActualizar = scanner.nextLine();
-
-                    String estadoActualizar = "Cambio en Solicitud";
-
-                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar,
-                            fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
-
-                    boolean actualizado = solicitudCRUD.actualizarSolicitud(solicitudActualizar);
-                    if (actualizado) {   
+                    if (solicitudCRUD.obtenerSolicitud(idActualizar) != null) {
+                        System.out.print("> Ingrese nuevo nombre del solicitante: ");
+                        String nombreActualizar = scanner.nextLine();
+                        LocalDate fechaActualizar = LocalDate.now();
+                        System.out.print("> Ingrese nuevo tema de la solicitud: ");
+                        String temaActualizar = scanner.nextLine();
+                        System.out.print("> Ingrese nueva descripción de la solicitud: ");
+                        String descripcionActualizar = scanner.nextLine();
+                        String estadoActualizar = "Cambio en Solicitud";
+                        SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar,
+                                fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
+                        boolean actualizado = solicitudCRUD.actualizarSolicitud(solicitudActualizar);
                         String verde = "\033[0;32m";
                         String reset = "\033[0m";
                         System.out.println(verde + "\n Solicitud actualizada exitosamente." + reset);
                     } else {
                         String rojo = "\033[0;31m";
                         String reset = "\033[0m";    
-                        System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID: " + idActualizar + reset);
+                        System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + idActualizar + reset);
                     }
                     break;
 
@@ -112,15 +109,16 @@ public class Empleado {
                     System.out.println("------------------");
                     System.out.print("> Ingrese ID de la solicitud a eliminar: ");
                     int idEliminar = scanner.nextInt();
-                    boolean eliminado = solicitudCRUD.eliminarSolicitud(idEliminar);
-                    if (eliminado) {   
+                    
+                    if (solicitudCRUD.obtenerSolicitud(idEliminar) != null) {
+                        solicitudCRUD.eliminarSolicitud(idEliminar);
                         String verde = "\033[0;32m";
                         String reset = "\033[0m";
                         System.out.println(verde + "\n Solicitud eliminada exitosamente." + reset);
-                    } else {
+                    }else{
                         String rojo = "\033[0;31m";
-                        String reset = "\033[0m";    
-                        System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID " + idEliminar + reset);
+                        String reset = "\033[0m";
+                        System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + idEliminar + reset);
                     }
                     break;
 
