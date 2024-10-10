@@ -16,7 +16,7 @@ public class App
                 System.out.println("           SELECCIÓN DE USUARIO          ");
                 System.out.println("===========================================");
                 System.out.println("===========================================");
-                System.out.println("        ¿Eres técnico o empleado?         ");
+                System.out.println("        ¿Eres Técnico o Empleado?         ");
                 System.out.println("             Escribe T o E               ");
                 System.out.println("             (S para salir)              ");
                 System.out.println("===========================================");
