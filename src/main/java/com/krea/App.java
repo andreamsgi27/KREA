@@ -14,15 +14,12 @@ public class App
 
         while (check){
             try {
-                // Imprimir un título destacado
                 System.out.println("===========================================\n");
                 System.out.println(azul + "           SELECCIÓN DE USUARIO          " + reset);
                 System.out.println("\n===========================================");
-                //System.out.println("===========================================");
                 System.out.println("\n        ¿Eres Técnico o Empleado?         ");
                 System.out.println("             Escribe T o E               ");
                 System.out.println("             (S para salir)              \n");
-                //System.out.println("===========================================");
                 System.out.println("===========================================");
                 
                 rol = scanner.nextLine();

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class SolicitudDatabase implements Serializable {
-    private static final long serialVersionUID = 1L; // Para control de versión
+    private static final long serialVersionUID = 1L;
 
     private int solicitudId;
     private String nombreSolicitud;
@@ -23,7 +23,6 @@ public class SolicitudDatabase implements Serializable {
         this.estadoSolicitud = estadoSolicitud;
     }
 
-    // Getters and Setters
     public int getSolicitudId() {
         return solicitudId;
     }
@@ -74,12 +73,12 @@ public class SolicitudDatabase implements Serializable {
 
     @Override
     public String toString() {
-        return "       " + solicitudId + "     " +
-                "   -->> Estado: " + estadoSolicitud + "    " +
-                "\n            Fecha: " + fechaSolicitud + "    " +
+        return "       " + solicitudId + "    " +
+                "-->> " + estadoSolicitud +" <<--\n" +
+                "\n            [ " + fechaSolicitud + " ]    " +
                 "\n            Nombre: " + nombreSolicitud + "    " +
                 "\n            Tema:  " + temaSolicitud + "    " +
-                "\n            Descripción: " + descripcionSolicitud + "\n";
+                "\n            Descripción: " + descripcionSolicitud + "\n\n";
     }
 
 }

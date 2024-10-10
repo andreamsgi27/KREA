@@ -10,7 +10,6 @@ public class Empleado {
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         LocalDate fecha = null;
-        // boolean fechaValida = false;
         LocalDate fechaActual = LocalDate.now();
         String azul = "\033[1;36m";
         String reset = "\033[0m";
@@ -20,7 +19,7 @@ public class Empleado {
             System.out.println("                                           ");
             System.out.println("=============");
             System.out.println(azul + "MENÚ EMPLEADO" + reset);
-            System.out.println("=============");
+            System.out.println("=============\n");
             System.out.println("1. Crear solicitud            ");
             System.out.println("2. Obtener solicitud          ");
             System.out.println("3. Actualizar solicitud       ");
@@ -51,7 +50,6 @@ public class Empleado {
                     break;
 
                 case 2:
-                    // Obtener solicitud
                     System.out.println();
                     System.out.println("------------------");
                     System.out.println(azul + "OBTENER SOLICITUD" + reset);
@@ -71,7 +69,6 @@ public class Empleado {
                     break;
 
                 case 3:
-                    // Actualizar solicitud
                     System.out.println();
                     System.out.println("------------------");
                     System.out.println(azul + "ACTUALIZAR SOLICITUD" + reset);
@@ -100,7 +97,6 @@ public class Empleado {
                     break;
 
                 case 4:
-                    // Eliminar solicitud
                     System.out.println();
                     System.out.println("------------------");
                     System.out.println(azul + "ELIMINAR SOLICITUD" + reset);
@@ -119,7 +115,6 @@ public class Empleado {
                     break;
 
                 case 5:
-                    // Listar solicitudes
                     System.out.println();
                     System.out.println("----------------");
                     System.out.println(azul + "LISTA SOLICITUDES" + reset);
@@ -128,7 +123,7 @@ public class Empleado {
                     break;
 
                 case 6:
-                    solicitudCRUD.guardarSolicitudes(); // Guardar antes de salir
+                    solicitudCRUD.guardarSolicitudes();
                     running = false;
                     String amarillo = "\033[0;33m";
                     System.out.println(amarillo + "\nSALIENDO DE LA APLICACIÓN..." + reset);
