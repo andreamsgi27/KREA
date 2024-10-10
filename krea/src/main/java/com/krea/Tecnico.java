@@ -14,23 +14,38 @@ public class Tecnico {
         while (check) {
             try {
                 System.err.println("");
-                System.out.println("===============================");
-                System.out.println("          MENÚ TÉCNICO");
-                System.out.println("===============================");
+                System.out.println("============");
+                System.out.println("MENÚ TÉCNICO");
+                System.out.println("============");
                 System.out.println(
-                        "1. Ver solicitudes \n2. Cambiar estado de Solicitud \n3. Editar Solicitud \n4. Eliminar Solicitud \n5. Salir");
+                        "1. Ver solicitudes \n2. Cambiar estado de Solicitud \n3. Actualizar Solicitud \n4. Eliminar Solicitud \n5. Salir");
+                System.out.println("                                            ");
+                System.out.println("Elige una opción (1-5):          ");       
                 opciones = scanner.nextInt();
 
                 if (opciones == 1) {
+                    System.out.println();
+                    System.out.println("--------------------------");
+                    System.out.println("     LISTA SOLICITUDES    ");
+                    System.out.println("--------------------------");
+                    System.out.println();
                     solicitudCRUD.mostrarSolicitudes();
 
                 } else if (opciones == 2) {
-                    System.out.println("Ingrese el ID de la solicitud que desea modificar: ");
+                    System.out.println();
+                    System.out.println("------------------------");
+                    System.out.println("CAMBIAR ESTADO SOLICITUD");
+                    System.out.println("-------------------------");
+                    System.out.println("> Ingrese el ID de la solicitud que desea modificar: ");
                     int solicitudId = scanner.nextInt();
                     solicitudCRUD.cambiarestadoSolicitud(solicitudId); // Call the method with the solicitudId
 
                 } else if (opciones == 3) {
                     // Actualizar solicitud
+                    System.out.println();
+                    System.out.println("--------------------");
+                    System.out.println("ACTUALIZAR SOLICITUD");
+                    System.out.println("--------------------");
                     LocalDate fechaActualizar = LocalDate.now();
                     System.out.print("Ingrese ID de la solicitud a actualizar: ");
                     int idActualizar = scanner.nextInt();
@@ -53,13 +68,19 @@ public class Tecnico {
                     }
 
                 } else if (opciones == 4) {
-                    System.out.println("\nPor favor introduce el ID de la solicitud:");
+                    System.out.println();
+                    System.out.println("------------------");
+                    System.out.println("ELIMINAR SOLICITUD");
+                    System.out.println("------------------");
+                    System.out.println("Por favor introduce el ID de la solicitud a eliminar:");
                     int solicitudId = scanner.nextInt();
                     solicitudCRUD.eliminarSolicitudTecnico(solicitudId);
 
                     if (solicitudCRUD.eliminarSolicitudTecnico(solicitudId) == false) {
                         System.out.println();
-                        System.out.println("La solicitud no puede ser eliminada porque no está finalizada.");
+                        String rojo = "\033[0;31m";
+                        String reset = "\033[0m";
+                        System.out.println(rojo + "ERROR: La solicitud no puede ser eliminada porque no está finalizada o no existe." + reset);
                     }
 
                 } else if (opciones == 5) {

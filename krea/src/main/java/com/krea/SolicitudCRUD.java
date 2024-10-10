@@ -31,7 +31,9 @@ public class SolicitudCRUD {
         } catch (FileNotFoundException e) {
             System.out.println("No se encontró el archivo de solicitudes, se creará uno nuevo.");
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error al cargar las solicitudes: " + e.getMessage());
+            String rojo = "\033[0;31m";
+            String reset = "\033[0m";
+            System.out.println(rojo + "ERROR: no se pueden cargar las solicitudes: " + e.getMessage() + reset);
         }
     }
 
@@ -89,7 +91,9 @@ public class SolicitudCRUD {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(solicitudes);
         } catch (IOException e) {
-            System.out.println("Error al guardar las solicitudes: " + e.getMessage());
+            String rojo = "\033[0;31m";
+            String reset = "\033[0m";
+            System.out.println(rojo + "ERROR: no se pudieron guardar las solicitudes: " + e.getMessage() + reset);
         }
     }
 
@@ -101,8 +105,10 @@ public class SolicitudCRUD {
 
         SolicitudDatabase nuevaSolicitud = new SolicitudDatabase(nuevoId, nombre, fecha, tema, descripcion, estado);
         solicitudes.add(nuevaSolicitud);
-        guardarSolicitudes(); // Guardar después de crear una nueva solicitud
-        System.out.println("Solicitud creada exitosamente con ID: " + nuevoId);
+        guardarSolicitudes(); // Guardar después de crear una nueva solicitud);
+        String verde = "\033[0;32m";
+        String reset = "\033[0m";
+        System.out.println(verde + "\nSolicitud creada exitosamente con ID " + nuevoId + reset);
     }
 
     private int obtenerNuevoId() {
@@ -153,9 +159,6 @@ public class SolicitudCRUD {
     }
 
     public void mostrarSolicitudes() {
-        System.out.println();
-        System.out.println("---- Lista de Solicitudes ----");
-        System.out.println();
         System.out.print("   Solicitud ");
         System.out.println();
         System.out.println();
@@ -180,11 +183,9 @@ public class SolicitudCRUD {
         SolicitudDatabase solicitud = solicitudCRUD.obtenerSolicitud(solicitudId);
 
         if (solicitud != null) {
-            System.out.println("Estado actual de la solicitud: " + solicitud.getEstadoSolicitud());
-            System.out.println("Seleccione el nuevo estado:");
-            System.out.println("1 - Atendida");
-            System.out.println("2 - En Curso");
-            System.out.println("3 - Finalizada");
+            System.out.println("\n>>> Estado actual de la solicitud " + solicitudId + ": " + solicitud.getEstadoSolicitud());
+            System.out.println(">>> Seleccione el nuevo estado de la solicitud " + solicitudId + ":");
+            System.out.println("   [1] Atendida" + "   [2] En Curso" + "   [3] Finalizada");
 
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea después del número
@@ -204,16 +205,22 @@ public class SolicitudCRUD {
                     solicitudCRUD.guardarSolicitudes(); // Save after deleting
                     break;
                 default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                String rojo = "\033[0;31m";
+                String reset = "\033[0m";    
+                System.out.println(rojo + "ERROR: Opción no válida. Intente de nuevo." + reset);
                     return; // Salir del método si la opción no es válida
             }
 
             // Actualizar el estado de la solicitud
             solicitud.setEstadoSolicitud(nuevoEstado);
             solicitudCRUD.actualizarSolicitud(solicitud);
-            System.out.println("\nEl estado de la solicitud ha sido actualizado a: " + nuevoEstado);
+            String verde = "\033[0;32m";
+            String reset = "\033[0m";
+            System.out.println(verde + "\n> El estado de la solicitud " + solicitudId + " ha sido actualizado a: " + nuevoEstado + reset);
         } else {
-            System.out.println("No se encontró la solicitud con ID: " + solicitudId);
+            String rojo = "\033[0;31m";
+            String reset = "\033[0m";    
+            System.out.println(rojo + "ERROR: No se encontró la solicitud con ID: " + solicitudId);
         }
     }
 
@@ -223,7 +230,9 @@ public class SolicitudCRUD {
                     && solicitudes.get(i).getEstadoSolicitud().equals("Finalizada")) {
                 solicitudes.remove(i);
                 guardarSolicitudes(); // Save after deleting
-                System.out.println("La solicitud " + id + " ha sido eliminada.");
+                String verde = "\033[0;32m";
+                String reset = "\033[0m";
+                System.out.println(verde + "La solicitud " + id + " ha sido eliminada." + reset);
                 return true;
             }
         }
