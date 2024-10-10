@@ -20,14 +20,14 @@ public class Tecnico {
                 System.out.println(
                         "1. Ver solicitudes \n2. Cambiar estado de Solicitud \n3. Actualizar Solicitud \n4. Eliminar Solicitud \n5. Salir");
                 System.out.println("                                            ");
-                System.out.println("Elige una opción (1-5):          ");       
+                System.out.println("> Elige una opción (1-5):          ");       
                 opciones = scanner.nextInt();
 
                 if (opciones == 1) {
                     System.out.println();
-                    System.out.println("--------------------------");
-                    System.out.println("     LISTA SOLICITUDES    ");
-                    System.out.println("--------------------------");
+                    System.out.println("-----------------");
+                    System.out.println("LISTA SOLICITUDES");
+                    System.out.println("-----------------");
                     System.out.println();
                     solicitudCRUD.mostrarSolicitudes();
 
@@ -47,14 +47,14 @@ public class Tecnico {
                     System.out.println("ACTUALIZAR SOLICITUD");
                     System.out.println("--------------------");
                     LocalDate fechaActualizar = LocalDate.now();
-                    System.out.print("Ingrese ID de la solicitud a actualizar: ");
+                    System.out.print("> Ingrese ID de la solicitud a actualizar: ");
                     int idActualizar = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("Ingrese nuevo nombre del solicitante: ");
+                    System.out.print("> Ingrese nuevo nombre del solicitante: ");
                     String nombreActualizar = scanner.nextLine();
-                    System.out.print("Ingrese nuevo tema de la solicitud: ");
+                    System.out.print("> Ingrese nuevo tema de la solicitud: ");
                     String temaActualizar = scanner.nextLine();
-                    System.out.print("Ingrese nueva descripción de la solicitud: ");
+                    System.out.print("> Ingrese nueva descripción de la solicitud: ");
                     String descripcionActualizar = scanner.nextLine();
                     String estadoActualizar = "Modificado por Técnico";
 
@@ -62,9 +62,13 @@ public class Tecnico {
                             fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
                     boolean actualizado = solicitudCRUD.actualizarSolicitudTecnico(solicitudActualizar);
                     if (actualizado) {
-                        System.out.println("Solicitud actualizada exitosamente.");
+                        String verde = "\033[0;32m";
+                        String reset = "\033[0m";
+                        System.out.println(verde + "\n Solicitud actualizada exitosamente." + reset);
                     } else {
-                        System.out.println("No se encontró la solicitud con ID: " + idActualizar);
+                        String rojo = "\033[0;31m";
+                        String reset = "\033[0m";
+                        System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID: " + idActualizar + reset);
                     }
 
                 } else if (opciones == 4) {
@@ -84,7 +88,10 @@ public class Tecnico {
                     }
 
                 } else if (opciones == 5) {
-                    check = false; // Exit the loop
+                    String amarillo = "\033[0;33m";  
+                    String reset = "\033[0m"; 
+                    System.out.println(amarillo + "\nSALIENDO DE LA APLICACIÓN..." + reset);
+                    break;
 
                 } else {
                     System.out.println("No has escrito bien el número");

@@ -182,11 +182,9 @@ public class SolicitudCRUD {
         SolicitudDatabase solicitud = obtenerSolicitud(solicitudId); // Utiliza la instancia actual
     
         if (solicitud != null) {
-            System.out.println("Estado actual de la solicitud: " + solicitud.getEstadoSolicitud());
-            System.out.println("Seleccione el nuevo estado:");
-            System.out.println("1 - Atendida");
-            System.out.println("2 - En Curso");
-            System.out.println("3 - Finalizada");
+            System.out.println("\n>>> Estado actual de la solicitud " + solicitudId + ": " + "\n" + "   " + solicitud.getEstadoSolicitud());
+            System.out.println(">>> Seleccione el nuevo estado de la solicitud " + solicitudId + ":");
+            System.out.println("   [1] Atendida" + "   [2] En Curso" + "   [3] Finalizada");
     
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea después del número
@@ -203,17 +201,24 @@ public class SolicitudCRUD {
                     nuevoEstado = "Finalizada";
                     break;
                 default:
-                    System.out.println("Opción no válida. Intente de nuevo.");
+                    String rojo = "\033[0;31m";
+                    String reset = "\033[0m";    
+                    System.out.println(rojo + "ERROR: Opción no válida. Intente de nuevo." + reset);
                     return; // Salir del método si la opción no es válida
             }
     
             solicitud.setEstadoSolicitud(nuevoEstado);
             actualizarSolicitud(solicitud); // Actualiza en la misma instancia
-            System.out.println("\nEl estado de la solicitud ha sido actualizado a: " + nuevoEstado);
+            String verde = "\033[0;32m";
+            String reset = "\033[0m";
+            System.out.println(verde + "\nEl estado de la solicitud " + solicitudId + " ha sido actualizado a " + nuevoEstado + reset);
         } else {
-            System.out.println("No se encontró la solicitud con ID: " + solicitudId);
+            String rojo = "\033[0;31m";
+            String reset = "\033[0m";    
+            System.out.println(rojo + "ERROR: No se encontró la solicitud con ID: " + solicitudId);
         }
     }
+    
 
     public boolean eliminarSolicitudTecnico(int id) {
         for (int i = 0; i < solicitudes.size(); i++) {

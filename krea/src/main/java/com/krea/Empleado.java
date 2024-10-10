@@ -26,7 +26,7 @@ public class Empleado {
             System.out.println("5. Listar solicitudes         ");
             System.out.println("6. Salir                      ");
             System.out.println("                                            ");
-            System.out.println("Elige una opción (1-6):          ");
+            System.out.println("> Elige una opción (1-6):          ");
 
             int opcion = scanner.nextInt();
             scanner.nextLine();

@@ -12,7 +12,8 @@ public class App
         while (check){
             try {
                 // Imprimir un título destacado
-                System.out.println("                                           ");
+                System.out.println("===========================================");
+                System.out.println("           SELECCIÓN DE USUARIO          ");
                 System.out.println("===========================================");
                 System.out.println("===========================================");
                 System.out.println("        ¿Eres técnico o empleado?         ");
@@ -38,9 +39,6 @@ public class App
             }
             
         }
-        
-
-        System.out.println("Gracias por usar nuestro programa");
         scanner.close();
     }
 
