@@ -178,49 +178,40 @@ public class SolicitudCRUD {
     }
 
     public void cambiarestadoSolicitud(int solicitudId) {
-        SolicitudCRUD solicitudCRUD = new SolicitudCRUD();
         Scanner scanner = new Scanner(System.in);
-        SolicitudDatabase solicitud = solicitudCRUD.obtenerSolicitud(solicitudId);
-
+        SolicitudDatabase solicitud = obtenerSolicitud(solicitudId); // Utiliza la instancia actual
+    
         if (solicitud != null) {
-            System.out.println("\n>>> Estado actual de la solicitud " + solicitudId + ": " + solicitud.getEstadoSolicitud());
-            System.out.println(">>> Seleccione el nuevo estado de la solicitud " + solicitudId + ":");
-            System.out.println("   [1] Atendida" + "   [2] En Curso" + "   [3] Finalizada");
-
+            System.out.println("Estado actual de la solicitud: " + solicitud.getEstadoSolicitud());
+            System.out.println("Seleccione el nuevo estado:");
+            System.out.println("1 - Atendida");
+            System.out.println("2 - En Curso");
+            System.out.println("3 - Finalizada");
+    
             int opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea después del número
-
+    
             String nuevoEstado = null;
             switch (opcion) {
                 case 1:
                     nuevoEstado = "Atendida";
-                    solicitudCRUD.guardarSolicitudes(); // Save after deleting
                     break;
                 case 2:
                     nuevoEstado = "En Curso";
-                    solicitudCRUD.guardarSolicitudes(); // Save after deleting
                     break;
                 case 3:
                     nuevoEstado = "Finalizada";
-                    solicitudCRUD.guardarSolicitudes(); // Save after deleting
                     break;
                 default:
-                String rojo = "\033[0;31m";
-                String reset = "\033[0m";    
-                System.out.println(rojo + "ERROR: Opción no válida. Intente de nuevo." + reset);
+                    System.out.println("Opción no válida. Intente de nuevo.");
                     return; // Salir del método si la opción no es válida
             }
-
-            // Actualizar el estado de la solicitud
+    
             solicitud.setEstadoSolicitud(nuevoEstado);
-            solicitudCRUD.actualizarSolicitud(solicitud);
-            String verde = "\033[0;32m";
-            String reset = "\033[0m";
-            System.out.println(verde + "\n> El estado de la solicitud " + solicitudId + " ha sido actualizado a: " + nuevoEstado + reset);
+            actualizarSolicitud(solicitud); // Actualiza en la misma instancia
+            System.out.println("\nEl estado de la solicitud ha sido actualizado a: " + nuevoEstado);
         } else {
-            String rojo = "\033[0;31m";
-            String reset = "\033[0m";    
-            System.out.println(rojo + "ERROR: No se encontró la solicitud con ID: " + solicitudId);
+            System.out.println("No se encontró la solicitud con ID: " + solicitudId);
         }
     }
 
