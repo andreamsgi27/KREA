@@ -13,20 +13,22 @@ public class Tecnico {
 
         while (check) {
             try {
+                String azul = "\033[1;36m";
+                String reset = "\033[0m";
                 System.err.println("");
                 System.out.println("============");
-                System.out.println("MENÚ TÉCNICO");
+                System.out.println(azul + "MENÚ TÉCNICO" + reset);
                 System.out.println("============");
                 System.out.println(
                         "1. Ver solicitudes \n2. Cambiar estado de Solicitud \n3. Actualizar Solicitud \n4. Eliminar Solicitud \n5. Salir");
                 System.out.println("                                            ");
-                System.out.println("> Elige una opción (1-5):          ");       
+                System.out.println("> Elige una opción (1-5):          ");
                 opciones = scanner.nextInt();
 
                 if (opciones == 1) {
                     System.out.println();
                     System.out.println("-----------------");
-                    System.out.println("LISTA SOLICITUDES");
+                    System.out.println(azul + "LISTA SOLICITUDES" + reset);
                     System.out.println("-----------------");
                     System.out.println();
                     solicitudCRUD.mostrarSolicitudes();
@@ -34,7 +36,7 @@ public class Tecnico {
                 } else if (opciones == 2) {
                     System.out.println();
                     System.out.println("------------------------");
-                    System.out.println("CAMBIAR ESTADO SOLICITUD");
+                    System.out.println(azul + "CAMBIAR ESTADO SOLICITUD" + reset);
                     System.out.println("-------------------------");
                     System.out.println("> Ingrese el ID de la solicitud que desea modificar: ");
                     int solicitudId = scanner.nextInt();
@@ -44,7 +46,7 @@ public class Tecnico {
                     // Actualizar solicitud
                     System.out.println();
                     System.out.println("--------------------");
-                    System.out.println("ACTUALIZAR SOLICITUD");
+                    System.out.println(azul + "ACTUALIZAR SOLICITUD"+ reset);
                     System.out.println("--------------------");
                     LocalDate fechaActualizar = LocalDate.now();
                     System.out.print("> Ingrese ID de la solicitud a actualizar: ");
@@ -62,18 +64,16 @@ public class Tecnico {
                                 fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
                         boolean actualizado = solicitudCRUD.actualizarSolicitudTecnico(solicitudActualizar);
                         String verde = "\033[0;32m";
-                        String reset = "\033[0m";
                         System.out.println(verde + "\n Solicitud actualizada exitosamente." + reset);
                     } else {
                         String rojo = "\033[0;31m";
-                        String reset = "\033[0m";
                         System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + idActualizar + reset);
                     }
 
                 } else if (opciones == 4) {
                     System.out.println();
                     System.out.println("------------------");
-                    System.out.println("ELIMINAR SOLICITUD");
+                    System.out.println(azul + "ELIMINAR SOLICITUD" + reset);
                     System.out.println("------------------");
                     System.out.println("Por favor introduce el ID de la solicitud a eliminar:");
                     int solicitudId = scanner.nextInt();
@@ -81,14 +81,12 @@ public class Tecnico {
                         solicitudCRUD.eliminarSolicitudTecnico(solicitudId);
                     }else{
                         String rojo = "\033[0;31m";
-                        String reset = "\033[0m";
                         System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + solicitudId + reset);
                     }
 
 
                 } else if (opciones == 5) {
-                    String amarillo = "\033[0;33m";  
-                    String reset = "\033[0m"; 
+                    String amarillo = "\033[0;33m";
                     System.out.println(amarillo + "\nSALIENDO DE LA APLICACIÓN..." + reset);
                     break;
 

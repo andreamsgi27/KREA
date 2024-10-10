@@ -12,12 +12,14 @@ public class Empleado {
         LocalDate fecha = null;
         // boolean fechaValida = false;
         LocalDate fechaActual = LocalDate.now();
+        String azul = "\033[1;36m";
+        String reset = "\033[0m";
 
         while (running) {
             System.out.println("                                           ");
             System.out.println("                                           ");
             System.out.println("=============");
-            System.out.println("MENÚ EMPLEADO");
+            System.out.println(azul + "MENÚ EMPLEADO" + reset);
             System.out.println("=============");
             System.out.println("1. Crear solicitud            ");
             System.out.println("2. Obtener solicitud          ");
@@ -36,7 +38,7 @@ public class Empleado {
                     fecha = fechaActual;
                     System.out.println();
                     System.out.println("---------------");
-                    System.out.println("CREAR SOLICITUD");
+                    System.out.println(azul + "CREAR SOLICITUD" + reset);
                     System.out.println("---------------");
                     System.out.print("> Ingrese nombre: ");
                     String nombre = scanner.nextLine();
@@ -52,7 +54,7 @@ public class Empleado {
                     // Obtener solicitud
                     System.out.println();
                     System.out.println("------------------");
-                    System.out.println("OBTENER SOLICITUD");
+                    System.out.println(azul + "OBTENER SOLICITUD" + reset);
                     System.out.println("------------------");
                     System.out.print("> Ingrese ID de la solicitud a obtener: ");
                     int idObtener = scanner.nextInt();
@@ -61,11 +63,9 @@ public class Empleado {
                         System.out.println("\n");
                         System.out.println(solicitudObtenida);
                         String verde = "\033[0;32m";
-                        String reset = "\033[0m";
                         System.out.println(verde + "\n Solicitud obtenida exitosamente." + reset);
                     } else {
                         String rojo = "\033[0;31m";
-                        String reset = "\033[0m";    
                         System.out.println(rojo + "\n ERROR: No se encontró la solicitud con ID: " + idObtener + reset);
                     }
                     break;
@@ -74,7 +74,7 @@ public class Empleado {
                     // Actualizar solicitud
                     System.out.println();
                     System.out.println("------------------");
-                    System.out.println("ACTUALIZAR SOLICITUD");
+                    System.out.println(azul + "ACTUALIZAR SOLICITUD" + reset);
                     System.out.println("------------------");
                     System.out.print("> Ingrese ID de la solicitud a actualizar: ");
                     int idActualizar = scanner.nextInt();
@@ -92,11 +92,9 @@ public class Empleado {
                                 fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
                         boolean actualizado = solicitudCRUD.actualizarSolicitud(solicitudActualizar);
                         String verde = "\033[0;32m";
-                        String reset = "\033[0m";
                         System.out.println(verde + "\n Solicitud actualizada exitosamente." + reset);
                     } else {
                         String rojo = "\033[0;31m";
-                        String reset = "\033[0m";    
                         System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + idActualizar + reset);
                     }
                     break;
@@ -105,7 +103,7 @@ public class Empleado {
                     // Eliminar solicitud
                     System.out.println();
                     System.out.println("------------------");
-                    System.out.println("ELIMINAR SOLICITUD");
+                    System.out.println(azul + "ELIMINAR SOLICITUD" + reset);
                     System.out.println("------------------");
                     System.out.print("> Ingrese ID de la solicitud a eliminar: ");
                     int idEliminar = scanner.nextInt();
@@ -113,11 +111,9 @@ public class Empleado {
                     if (solicitudCRUD.obtenerSolicitud(idEliminar) != null) {
                         solicitudCRUD.eliminarSolicitud(idEliminar);
                         String verde = "\033[0;32m";
-                        String reset = "\033[0m";
                         System.out.println(verde + "\n Solicitud eliminada exitosamente." + reset);
                     }else{
                         String rojo = "\033[0;31m";
-                        String reset = "\033[0m";
                         System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + idEliminar + reset);
                     }
                     break;
@@ -126,7 +122,7 @@ public class Empleado {
                     // Listar solicitudes
                     System.out.println();
                     System.out.println("----------------");
-                    System.out.println("LISTAR SOLICITUD");
+                    System.out.println(azul + "LISTA SOLICITUDES" + reset);
                     System.out.println("----------------");
                     solicitudCRUD.mostrarSolicitudes();
                     break;
@@ -134,14 +130,13 @@ public class Empleado {
                 case 6:
                     solicitudCRUD.guardarSolicitudes(); // Guardar antes de salir
                     running = false;
-                    String amarillo = "\033[0;33m";  
-                    String reset = "\033[0m"; 
+                    String amarillo = "\033[0;33m";
                     System.out.println(amarillo + "\nSALIENDO DE LA APLICACIÓN..." + reset);
                     break;
 
                 default:
                 String rojo = "\033[0;31m";
-                String reset1 = "\033[0m";    
+                String reset1 = "\033[0m";
                     System.out.println(rojo + "\n ERROR: Opción no válida. Intente de nuevo." + reset1);
             }
         }
