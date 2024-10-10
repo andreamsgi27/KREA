@@ -38,7 +38,7 @@ public class Tecnico {
                     String temaActualizar = scanner.nextLine();
                     System.out.print("Ingrese nueva descripción de la solicitud: ");
                     String descripcionActualizar = scanner.nextLine();
-                    String estadoActualizar = "Modificado por Tecnico";
+                    String estadoActualizar = "Modificado por Técnico";
 
                     SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar, fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
                     boolean actualizado = solicitudCRUD.actualizarSolicitudTecnico(solicitudActualizar);
@@ -50,19 +50,14 @@ public class Tecnico {
 
 
                 } else if (opciones == 4) {
-                    // Eliminar solicitud
-                    /* System.out.print("Ingrese ID de la solicitud a eliminar: ");
-                    int idEliminar = scanner.nextInt();
-                    if (SolicitudDatabase.estadoSolicitud = "Finalizada"){
-                            boolean eliminado = solicitudCRUD.eliminarSolicitud(idEliminar);
-                        if (eliminado) {
-                            System.out.println("Solicitud eliminada exitosamente.");
-                        } else {
-                            System.out.println("No se encontró la solicitud con ID: " + idEliminar);
-                        }
-                    } */
-                    
+                    System.out.println("\nPor favor introduce el ID de la solicitud:");
+                    int solicitudId = scanner.nextInt();
+                    solicitudCRUD.eliminarSolicitudTecnico(solicitudId);
 
+                    if (solicitudCRUD.eliminarSolicitudTecnico(solicitudId) == false){
+                        System.out.println();
+                        System.out.println("La solicitud no puede ser eliminada porque no está finalizada.");
+                    }
 
                 } else if (opciones == 5) {
                     check = false; // Exit the loop

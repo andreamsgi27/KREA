@@ -208,5 +208,20 @@ public class SolicitudCRUD {
             System.out.println("No se encontró la solicitud con ID: " + solicitudId);
         }
     }
+
+    
+    public boolean eliminarSolicitudTecnico(int id) {
+        for (int i = 0; i < solicitudes.size(); i++) {
+            if (solicitudes.get(i).getSolicitudId() == id && solicitudes.get(i).getEstadoSolicitud().equals("Finalizada")) {
+                    solicitudes.remove(i);
+                    guardarSolicitudes(); // Save after deleting
+                    System.out.println("La solicitud "+ id +" ha sido eliminada.");
+                    return true;
+                }
+            }
+            return false;
+        }
+    
+
 }
 
