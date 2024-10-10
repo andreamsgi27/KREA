@@ -6,21 +6,19 @@ import java.util.Scanner;
 public class Empleado {
     public static void main(String[] args) {
         SolicitudCRUD solicitudCRUD = new SolicitudCRUD();
-        
+
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         LocalDate fecha = null;
-        //boolean fechaValida = false;
-        LocalDate  fechaActual = LocalDate.now();
-
-
+        // boolean fechaValida = false;
+        LocalDate fechaActual = LocalDate.now();
 
         while (running) {
             System.out.println("                                           ");
             System.out.println("                                           ");
-            System.out.println("=============");
-            System.out.println("MENÚ EMPLEADO                ");
-            System.out.println("=============");
+            System.out.println("========================");
+            System.out.println("     MENÚ EMPLEADO                ");
+            System.out.println("========================");
             System.out.println("1. Crear solicitud            ");
             System.out.println("2. Obtener solicitud          ");
             System.out.println("3. Actualizar solicitud       ");
@@ -43,11 +41,10 @@ public class Empleado {
                     System.out.print("Ingrese descripción: ");
                     String descripcion = scanner.nextLine();
                     String estado = ("Pendiente");
-                    
+
                     solicitudCRUD.crearSolicitud(nombre, fecha, tema, descripcion, estado);
                     System.out.println("Solicitud creada exitosamente.");
                     break;
-            
 
                 case 2:
                     // Obtener solicitud
@@ -76,7 +73,8 @@ public class Empleado {
 
                     String estadoActualizar = "Cambio en Solicitud";
 
-                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar, fechaActualizar, temaActualizar, descripcionActualizar,  estadoActualizar);
+                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar,
+                            fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
 
                     boolean actualizado = solicitudCRUD.actualizarSolicitud(solicitudActualizar);
                     if (actualizado) {

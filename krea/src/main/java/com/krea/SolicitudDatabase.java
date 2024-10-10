@@ -13,8 +13,8 @@ public class SolicitudDatabase implements Serializable {
     private String descripcionSolicitud;
     private String estadoSolicitud;
 
-    public SolicitudDatabase(int solicitudId, String nombreSolicitud, LocalDate fechaSolicitud, 
-                            String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) {
+    public SolicitudDatabase(int solicitudId, String nombreSolicitud, LocalDate fechaSolicitud,
+            String temaSolicitud, String descripcionSolicitud, String estadoSolicitud) {
         this.solicitudId = solicitudId;
         this.nombreSolicitud = nombreSolicitud;
         this.fechaSolicitud = fechaSolicitud;
@@ -74,11 +74,12 @@ public class SolicitudDatabase implements Serializable {
 
     @Override
     public String toString() {
-        return "[Solicitud ID]: " + solicitudId +
-        "   [Estado]: " + estadoSolicitud +
-        "   [Fecha]: " + fechaSolicitud +
-        "   [Nombre]: " + nombreSolicitud +
-        "   [Tema]: " + temaSolicitud +
-        "   [Descripción]: " + descripcionSolicitud;
+        return "       " + solicitudId + "     " +
+                "   -->> Estado: " + estadoSolicitud + "    " +
+                "\n            Fecha: " + fechaSolicitud + "    " +
+                "\n            Nombre: " + nombreSolicitud + "    " +
+                "\n            Tema:  " + temaSolicitud + "    " +
+                "\n            Descripción: " + descripcionSolicitud + "\n";
     }
+
 }

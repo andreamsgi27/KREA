@@ -1,4 +1,5 @@
 package com.krea;
+
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -13,15 +14,15 @@ public class Tecnico {
         while (check) {
             try {
                 System.err.println("");
-                System.out.println("===========================================");
-                System.out.println(" MENÚ TÉCNICO");
-                System.out.println("===========================================");
-                System.out.println("1 - [Ver solicitudes] \n2 - [Cambiar estado de Solicitud] \n3 - [Editar Solicitud] \n4 - [Eliminar Solicitud] \n5 - [Salir]");
+                System.out.println("===============================");
+                System.out.println("          MENÚ TÉCNICO");
+                System.out.println("===============================");
+                System.out.println(
+                        "1. Ver solicitudes \n2. Cambiar estado de Solicitud \n3. Editar Solicitud \n4. Eliminar Solicitud \n5. Salir");
                 opciones = scanner.nextInt();
 
                 if (opciones == 1) {
                     solicitudCRUD.mostrarSolicitudes();
-
 
                 } else if (opciones == 2) {
                     System.out.println("Ingrese el ID de la solicitud que desea modificar: ");
@@ -42,7 +43,8 @@ public class Tecnico {
                     String descripcionActualizar = scanner.nextLine();
                     String estadoActualizar = "Modificado por Técnico";
 
-                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar, fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
+                    SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar,
+                            fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
                     boolean actualizado = solicitudCRUD.actualizarSolicitudTecnico(solicitudActualizar);
                     if (actualizado) {
                         System.out.println("Solicitud actualizada exitosamente.");
@@ -50,20 +52,18 @@ public class Tecnico {
                         System.out.println("No se encontró la solicitud con ID: " + idActualizar);
                     }
 
-
                 } else if (opciones == 4) {
                     System.out.println("\nPor favor introduce el ID de la solicitud:");
                     int solicitudId = scanner.nextInt();
                     solicitudCRUD.eliminarSolicitudTecnico(solicitudId);
 
-                    if (solicitudCRUD.eliminarSolicitudTecnico(solicitudId) == false){
+                    if (solicitudCRUD.eliminarSolicitudTecnico(solicitudId) == false) {
                         System.out.println();
                         System.out.println("La solicitud no puede ser eliminada porque no está finalizada.");
                     }
 
                 } else if (opciones == 5) {
                     check = false; // Exit the loop
-
 
                 } else {
                     System.out.println("No has escrito bien el número");

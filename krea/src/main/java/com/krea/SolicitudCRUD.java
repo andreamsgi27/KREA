@@ -151,41 +151,44 @@ public class SolicitudCRUD {
         }
         return false;
     }
-    
+
     public void mostrarSolicitudes() {
-        System.out.println("\n-------------------");
-        System.out.println("LISTA DE SOLICIUDES");
-        System.out.println("-------------------");
-    
+        System.out.println();
+        System.out.println("---- Lista de Solicitudes ----");
+        System.out.println();
+        System.out.print("   Solicitud ");
+        System.out.println();
+        System.out.println();
+
         // Ordenar las solicitudes por fecha en orden ascendente
         Collections.sort(solicitudes, new Comparator<SolicitudDatabase>() {
             @Override
             public int compare(SolicitudDatabase s1, SolicitudDatabase s2) {
-                return s1.getFechaSolicitud().compareTo(s2.getFechaSolicitud()); // Asumiendo que getFecha() retorna un LocalDate
+                return s1.getFechaSolicitud().compareTo(s2.getFechaSolicitud()); // Asumiendo que getFecha() retorna un
+                                                                                 // LocalDate
             }
         });
-    
+
         for (SolicitudDatabase solicitud : solicitudes) {
             System.out.println(solicitud);
         }
     }
-    
 
     public void cambiarestadoSolicitud(int solicitudId) {
         SolicitudCRUD solicitudCRUD = new SolicitudCRUD();
         Scanner scanner = new Scanner(System.in);
         SolicitudDatabase solicitud = solicitudCRUD.obtenerSolicitud(solicitudId);
-        
+
         if (solicitud != null) {
             System.out.println("Estado actual de la solicitud: " + solicitud.getEstadoSolicitud());
             System.out.println("Seleccione el nuevo estado:");
             System.out.println("1 - Atendida");
             System.out.println("2 - En Curso");
             System.out.println("3 - Finalizada");
-            
+
             int opcion = scanner.nextInt();
-            scanner.nextLine();  // Consumir el salto de línea después del número
-            
+            scanner.nextLine(); // Consumir el salto de línea después del número
+
             String nuevoEstado = null;
             switch (opcion) {
                 case 1:
@@ -202,9 +205,9 @@ public class SolicitudCRUD {
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
-                    return;  // Salir del método si la opción no es válida
+                    return; // Salir del método si la opción no es válida
             }
-            
+
             // Actualizar el estado de la solicitud
             solicitud.setEstadoSolicitud(nuevoEstado);
             solicitudCRUD.actualizarSolicitud(solicitud);
@@ -214,19 +217,17 @@ public class SolicitudCRUD {
         }
     }
 
-    
     public boolean eliminarSolicitudTecnico(int id) {
         for (int i = 0; i < solicitudes.size(); i++) {
-            if (solicitudes.get(i).getSolicitudId() == id && solicitudes.get(i).getEstadoSolicitud().equals("Finalizada")) {
-                    solicitudes.remove(i);
-                    guardarSolicitudes(); // Save after deleting
-                    System.out.println("La solicitud "+ id +" ha sido eliminada.");
-                    return true;
-                }
+            if (solicitudes.get(i).getSolicitudId() == id
+                    && solicitudes.get(i).getEstadoSolicitud().equals("Finalizada")) {
+                solicitudes.remove(i);
+                guardarSolicitudes(); // Save after deleting
+                System.out.println("La solicitud " + id + " ha sido eliminada.");
+                return true;
             }
-            return false;
         }
-    
+        return false;
+    }
 
 }
-
