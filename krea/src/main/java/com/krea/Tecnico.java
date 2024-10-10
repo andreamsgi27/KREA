@@ -28,7 +28,6 @@ public class Tecnico {
                     int solicitudId = scanner.nextInt();
                     solicitudCRUD.cambiarestadoSolicitud(solicitudId); // Call the method with the solicitudId
 
-
                 } else if (opciones == 3) {
                     // Actualizar solicitud
                     LocalDate fechaActualizar = LocalDate.now();

@@ -190,12 +190,15 @@ public class SolicitudCRUD {
             switch (opcion) {
                 case 1:
                     nuevoEstado = "Atendida";
+                    solicitudCRUD.guardarSolicitudes(); // Save after deleting
                     break;
                 case 2:
                     nuevoEstado = "En Curso";
+                    solicitudCRUD.guardarSolicitudes(); // Save after deleting
                     break;
                 case 3:
                     nuevoEstado = "Finalizada";
+                    solicitudCRUD.guardarSolicitudes(); // Save after deleting
                     break;
                 default:
                     System.out.println("Opción no válida. Intente de nuevo.");
