@@ -13,6 +13,9 @@ public class Tecnico {
         while (check) {
             try {
                 System.err.println("");
+                System.out.println("===========================================");
+                System.out.println(" MENÚ TÉCNICO");
+                System.out.println("===========================================");
                 System.out.println("1 - [Ver solicitudes] \n2 - [Cambiar estado de Solicitud] \n3 - [Editar Solicitud] \n4 - [Eliminar Solicitud] \n5 - [Salir]");
                 opciones = scanner.nextInt();
 

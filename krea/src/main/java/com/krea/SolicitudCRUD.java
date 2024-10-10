@@ -153,7 +153,9 @@ public class SolicitudCRUD {
     }
     
     public void mostrarSolicitudes() {
-        System.out.println("---- Lista de Solicitudes ----");
+        System.out.println("\n-------------------");
+        System.out.println("LISTA DE SOLICIUDES");
+        System.out.println("-------------------");
     
         // Ordenar las solicitudes por fecha en orden ascendente
         Collections.sort(solicitudes, new Comparator<SolicitudDatabase>() {

@@ -16,14 +16,19 @@ public class Empleado {
 
 
         while (running) {
-            System.out.println("---- Menú ----");
-            System.out.println("1. Crear solicitud");
-            System.out.println("2. Obtener solicitud");
-            System.out.println("3. Actualizar solicitud");
-            System.out.println("4. Eliminar solicitud");
-            System.out.println("5. Listar solicitudes");
-            System.out.println("6. Salir");
-            System.out.print("Seleccione una opción: ");
+            System.out.println("                                           ");
+            System.out.println("                                           ");
+            System.out.println("=============");
+            System.out.println("MENÚ EMPLEADO                ");
+            System.out.println("=============");
+            System.out.println("1. Crear solicitud            ");
+            System.out.println("2. Obtener solicitud          ");
+            System.out.println("3. Actualizar solicitud       ");
+            System.out.println("4. Eliminar solicitud         ");
+            System.out.println("5. Listar solicitudes         ");
+            System.out.println("6. Salir                      ");
+            System.out.println("                                            ");
+            System.out.println("Elige una opción (1-6):          ");
 
             int opcion = scanner.nextInt();
             scanner.nextLine();

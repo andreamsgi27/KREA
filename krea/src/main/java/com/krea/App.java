@@ -14,9 +14,11 @@ public class App
                 // Imprimir un título destacado
                 System.out.println("                                           ");
                 System.out.println("===========================================");
+                System.out.println("===========================================");
                 System.out.println("        ¿Eres técnico o empleado?         ");
                 System.out.println("             Escribe T o E               ");
                 System.out.println("             (S para salir)              ");
+                System.out.println("===========================================");
                 System.out.println("===========================================");
                 
                 rol = scanner.nextLine();
