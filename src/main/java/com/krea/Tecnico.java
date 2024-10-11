@@ -92,13 +92,15 @@ public class Tecnico {
                     }
                     System.out.println(naranja + "\nPulsa [Enter] para volver al menú de técnico..." + reset);
                     scanner.nextLine(); 
-
+                    scanner.nextLine();
                 } else if (opciones == 5) {
                     System.out.println(amarillo + "\nSALIENDO DE LA APLICACIÓN..." + reset);
                     break;
 
                 } else {
                     System.out.println(rojo + "ERROR: No has escrito bien el número" + reset);
+                    scanner.nextLine();
+                    scanner.nextLine();
                 }
             } catch (Exception e) {
                 String rojo = "\033[0;31m";
