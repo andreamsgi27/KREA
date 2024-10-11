@@ -13,6 +13,10 @@ public class Tecnico {
         while (check) {
             try {
                 String azul = "\033[1;36m";
+                String naranja = "\033[0;33m";
+                String rojo = "\033[0;31m";
+                String verde = "\033[0;32m";
+                String amarillo = "\033[0;33m";
                 String reset = "\033[0m";
                 System.err.println("");
                 System.out.println("============");
@@ -31,6 +35,9 @@ public class Tecnico {
                     System.out.println("-----------------");
                     System.out.println();
                     solicitudCRUD.mostrarSolicitudes();
+                    System.out.println(naranja + "Pulsa [Enter] para volver al menú de técnico..." + reset);
+                    scanner.nextLine(); 
+                    scanner.nextLine(); 
 
                 } else if (opciones == 2) {
                     System.out.println();
@@ -40,6 +47,9 @@ public class Tecnico {
                     System.out.println("> Ingrese el ID de la solicitud que desea modificar: ");
                     int solicitudId = scanner.nextInt();
                     solicitudCRUD.cambiarestadoSolicitud(solicitudId);
+                    scanner.nextLine(); 
+                    System.out.println(naranja + "\nPulsa [Enter] para volver al menú de técnico..." + reset);
+                    scanner.nextLine(); 
 
                 } else if (opciones == 3) {
                     System.out.println();
@@ -61,12 +71,12 @@ public class Tecnico {
                         SolicitudDatabase solicitudActualizar = new SolicitudDatabase(idActualizar, nombreActualizar,
                                 fechaActualizar, temaActualizar, descripcionActualizar, estadoActualizar);
                         boolean actualizado = solicitudCRUD.actualizarSolicitudTecnico(solicitudActualizar);
-                        String verde = "\033[0;32m";
-                        System.out.println(verde + "\n Solicitud actualizada exitosamente." + reset);
+                        System.out.println(verde + "\nSolicitud actualizada exitosamente." + reset);
                     } else {
-                        String rojo = "\033[0;31m";
-                        System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + idActualizar + reset);
+                        System.out.println(rojo + "\nERROR: No existe una solicitud con ID " + idActualizar + reset);
                     }
+                    System.out.println(naranja + "\nPulsa [Enter] para volver al menú de técnico..." + reset);
+                    scanner.nextLine(); 
 
                 } else if (opciones == 4) {
                     System.out.println();
@@ -78,21 +88,20 @@ public class Tecnico {
                     if (solicitudCRUD.obtenerSolicitud(solicitudId) != null) {
                         solicitudCRUD.eliminarSolicitudTecnico(solicitudId);
                     }else{
-                        String rojo = "\033[0;31m";
-                        System.out.println(rojo + "\n ERROR: No existe una solicitud con ID " + solicitudId + reset);
+                        System.out.println(rojo + "\nERROR: No existe una solicitud con ID " + solicitudId + reset);
                     }
-
+                    System.out.println(naranja + "\nPulsa [Enter] para volver al menú de técnico..." + reset);
+                    scanner.nextLine(); 
 
                 } else if (opciones == 5) {
-                    String amarillo = "\033[0;33m";
                     System.out.println(amarillo + "\nSALIENDO DE LA APLICACIÓN..." + reset);
                     break;
 
                 } else {
-                    System.out.println("No has escrito bien el número");
+                    System.out.println(rojo + "ERROR: No has escrito bien el número" + reset);
                 }
             } catch (Exception e) {
-                System.out.println("Entrada no válida.");
+                System.out.println(rojo + "ERROR: Entrada no válida." + reset);
                 scanner.next();
             }
         }
