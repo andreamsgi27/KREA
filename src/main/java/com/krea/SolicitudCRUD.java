@@ -20,9 +20,6 @@ public class SolicitudCRUD {
     public SolicitudCRUD() {
         this.solicitudes = new ArrayList<>();
         cargarSolicitudes();
-        if (solicitudes.isEmpty()) {
-            inicializarSolicitudes();
-        }
     }
 
     private void cargarSolicitudes() {
@@ -35,27 +32,6 @@ public class SolicitudCRUD {
             String reset = "\033[0m";
             System.out.println(rojo + "\n ERROR: no se pueden cargar las solicitudes: " + e.getMessage() + reset);
         }
-    }
-
-    private void inicializarSolicitudes() {
-        solicitudes.add(new SolicitudDatabase(1, "Juan Perez", LocalDate.parse("2024-09-15"), "Consulta Técnica",
-                "Problema con acceso base de datos", "Atendida"));
-        solicitudes.add(new SolicitudDatabase(2, "Maria Lopez", LocalDate.parse("2024-09-17"), "Revisión de Proyecto",
-                "Revisión del proyecto de inteligencia artificial", "En curso"));
-        solicitudes.add(new SolicitudDatabase(3, "Carlos Gomez", LocalDate.parse("2024-09-18"), "Asesoría Financiera",
-                "Consulta sobre opciones de inversión", "Pendiente"));
-        solicitudes.add(new SolicitudDatabase(4, "Ana Torres", LocalDate.parse("2024-09-19"), "Consulta",
-                "Llamadme cuanto antes", "Atendida"));
-        solicitudes.add(new SolicitudDatabase(5, "Luis Martinez", LocalDate.parse("2024-09-20"), "Soporte Técnico",
-                "Problemas con la impresora", "En curso"));
-        solicitudes.add(new SolicitudDatabase(6, "Laura Rodriguez", LocalDate.parse("2024-09-21"), "Consulta Legal",
-                "Revisión de contrato", "Pendiente"));
-        solicitudes.add(new SolicitudDatabase(7, "David Sanchez", LocalDate.parse("2024-09-22"),
-                "Planificación de Eventos", "Organización de la próxima conferencia", "Atendida"));
-        solicitudes.add(new SolicitudDatabase(8, "Sofia Ruiz", LocalDate.parse("2024-09-23"), "Revisión de CV",
-                "Asesoría sobre CV", "En curso"));
-
-        guardarSolicitudes();
     }
 
     public void guardarSolicitudes() {

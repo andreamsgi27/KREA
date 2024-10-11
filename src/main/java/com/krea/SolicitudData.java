@@ -1,6 +1,5 @@
 package com.krea;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,17 +8,8 @@ public class SolicitudData {
 
         public SolicitudData() {
                 solicitudes = new ArrayList<>();
-                cargarSolicitudes();
         }
 
-        private void cargarSolicitudes() {
-                solicitudes.add(new SolicitudDatabase(1, "Juan Perez", LocalDate.parse("2024-09-15"), 
-                        "Consulta Técnica", "Problema con acceso a la base de datos", "Atendida"));
-                solicitudes.add(new SolicitudDatabase(2, "Maria Lopez", LocalDate.parse("2024-09-17"),
-                        "Revisión de Proyecto", "Revisión del proyecto de inteligencia artificial", "En curso"));
-                solicitudes.add(new SolicitudDatabase(22, "Nadia Cruz", LocalDate.parse("2024-10-07"), 
-                        "Consulta Médica", "Síntomas de alergia", "Pendiente"));
-        }
 
         public void mostrarSolicitudes() {
                 System.out.println("\nLista de Solicitudes:");
