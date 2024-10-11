@@ -101,6 +101,8 @@ public class Tecnico {
                     System.out.println(rojo + "ERROR: No has escrito bien el número" + reset);
                 }
             } catch (Exception e) {
+                String rojo = "\033[0;31m";
+                String reset = "\033[0m";
                 System.out.println(rojo + "ERROR: Entrada no válida." + reset);
                 scanner.next();
             }

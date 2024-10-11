@@ -67,7 +67,7 @@ public class Empleado {
                         System.out.println("\n");
                         System.out.println(solicitudObtenida);
                         System.out.println(verde + "\n Solicitud obtenida exitosamente." + reset);
-                        System.out.println(naranja + "\nPulsa [Enter] para volver al menú de técnico..." + reset);
+                        System.out.println(naranja + "\nPulsa [Enter] para volver al menú de empleado..." + reset);
                         scanner.nextLine(); 
                         scanner.nextLine(); 
                     } else {
